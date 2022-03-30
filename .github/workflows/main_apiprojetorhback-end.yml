@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'ApiProjetoRHBack-End'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0C14DB04709E4E8ABCC6409122A75732 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6DA47E16AC124EA58C345EBFEB486620 }}
           package: .
