@@ -130,6 +130,7 @@ C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1
 C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.xml
 C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.pdb
 C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.genruntimeconfig.cache
+<<<<<<< HEAD
 C:\Users\52826143832.INFOSCS\Desktop\SenaiRHBackEnd\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.csproj.AssemblyReference.cache
 C:\Users\52826143832.INFOSCS\Desktop\SenaiRHBackEnd\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\52826143832.INFOSCS\Desktop\SenaiRHBackEnd\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.AssemblyInfoInputs.cache
@@ -141,3 +142,8 @@ C:\Users\52826143832.INFOSCS\Desktop\SenaiRHBackEnd\SENAI-RH-BACKEND\API\Grupo1\
 C:\Users\52826143832.INFOSCS\Desktop\SenaiRHBackEnd\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\ref\SenaiRH-G1.dll
 C:\Users\52826143832.INFOSCS\Desktop\SenaiRHBackEnd\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.xml
 C:\Users\52826143832.INFOSCS\Desktop\SenaiRHBackEnd\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.pdb
+=======
+C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.xml
+C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\bin\Debug\net5.0\SenaiRH-G1.xml
+C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\bin\Debug\net5.0\BCrypt.Net-Next.dll
+>>>>>>> a7b5181d744d7ac390c8f268b39853902760fa68
