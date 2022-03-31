@@ -1,4 +1,4 @@
-USE DBProjetoSenaiRH;
+USE SENAI_RH;
 GO
 
 INSERT INTO CEP(cep)
