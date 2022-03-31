@@ -1,13 +1,22 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using senai_gp3_webApi.Contexts;
+using senai_gp3_webApi.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace senai_gp3_webApi
@@ -26,6 +35,77 @@ namespace senai_gp3_webApi
         {
 
             services.AddControllers();
+
+            services.AddControllers()
+               .AddNewtonsoftJson(options =>
+               {
+                   options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                   options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+               });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                                builder =>
+                                {
+                                    builder.AllowAnyOrigin()
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
+                                });
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SenaiRHG1.webAPI", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
+            services.AddDbContext<senaiRhContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("Default"))
+);
+
+            services
+                .AddAuthentication(option =>
+                {
+                    option.DefaultAuthenticateScheme = "JwtBearer";
+                    option.DefaultChallengeScheme = "JwtBearer";
+                }
+                )
+
+                .AddJwtBearer("JwtBearer", options =>
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+
+                    // será validado emissor do token
+                    ValidateIssuer = true,
+
+                    //será validade endereço do token
+                    ValidateAudience = true,
+
+                    //será vailidado tempo do token
+                    ValidateLifetime = true,
+
+                    //definição da chave de segurança
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("UQIEUW-ORPOEWI-23854-023AKJD")),
+
+                    //define o tempo de expiração
+                    ClockSkew = TimeSpan.FromHours(1),
+
+                    //nome de emissor
+                    ValidIssuer = "nota10.webApi",
+
+                    //nome do destinatário
+                    ValidAudience = "nota10.webApi"
+                }
+                );
+
+
+
+            services.AddTransient<DbContext, senaiRhContext>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +116,26 @@ namespace senai_gp3_webApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SenaiRH_GP1.WebAPI");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
+                RequestPath = "/StaticFiles"
+            });
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

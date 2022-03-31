@@ -1,0 +1,84 @@
+﻿using senai_gp3_webApi.Contexts;
+using senai_gp3_webApi.Domains;
+using senai_gp3_webApi.Utils;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace senai_gp3_webApi.Repositories
+{
+    public class UsuarioRepository : IUsuarioRepository
+    {
+        private readonly senaiRhContext ctx;
+
+        public UsuarioRepository(senaiRhContext appContext)
+        {
+            ctx = appContext;
+        }
+
+        public void AtualizarFotoDePerfil(int idUsuario)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AtualizarUsuario(int idUsuario, Usuario usuarioAtualizado)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CadastrarUsuario(Usuario novoUsuario)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string CalcularMediaAvaliacao(int idUsuario)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string CalcularSatisfacao(int idUsuario)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeletarUsuario(int idUsuario)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string ListarSalario(int idUsuario)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Usuario> ListarUsuario()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Usuario ListarUsuarioPorId(int idUsuario)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Usuario Login(string email, string senha)
+        {
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Email == email);
+
+            if (usuario != null)
+            {
+                if (usuario.Senha.Length != 60 && usuario.Senha[0].ToString() != "$")
+                {
+                    string senhaHash = Criptografia.GerarHash(senha);
+                    usuario.Senha = senhaHash;
+                    ctx.Usuarios.Update(usuario);
+                    ctx.SaveChanges();
+                    return usuario;
+                }
+                bool confere = Criptografia.CompararSenha(senha, usuario.Senha);
+                if (confere)
+                    return usuario;
+            }
+            return null;
+        }
+    }
+}
