@@ -81,12 +81,12 @@ namespace SenaiRH_G1
                     };
                 });
 
-            services.AddDbContext<SenaiRHContext>(options =>
+            services.AddDbContext<senaiRhContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default"))
             );
 
 
-            services.AddTransient<DbContext, SenaiRHContext>();
+            services.AddTransient<DbContext, senaiRhContext>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             
         }

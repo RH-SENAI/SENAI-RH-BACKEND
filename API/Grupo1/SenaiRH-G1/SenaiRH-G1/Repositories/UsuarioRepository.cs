@@ -11,9 +11,9 @@ namespace SenaiRH_G1.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly SenaiRHContext ctx;
+        private readonly senaiRhContext ctx;
 
-        public UsuarioRepository(SenaiRHContext appContext)
+        public UsuarioRepository(senaiRhContext appContext)
         {
             ctx = appContext;
         }

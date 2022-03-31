@@ -17,8 +17,8 @@ namespace SenaiRH_G1.Controllers
     [ApiController]
     public class AtividadesController : ControllerBase
     {
-        private readonly SenaiRHContext _context;
-        public AtividadesController(SenaiRHContext context)
+        private readonly senaiRhContext _context;
+        public AtividadesController(senaiRhContext context)
         {
             _context = context;
         }

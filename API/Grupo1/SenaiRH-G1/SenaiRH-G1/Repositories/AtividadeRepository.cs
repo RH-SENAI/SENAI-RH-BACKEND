@@ -10,8 +10,8 @@ namespace SenaiRH_G1.Repositories
 {
     public class AtividadeRepository : IAtividadeRepository
     {
-        private readonly SenaiRHContext ctx;
-        public AtividadeRepository(SenaiRHContext appContext)
+        private readonly senaiRhContext ctx;
+        public AtividadeRepository(senaiRhContext appContext)
         {
             ctx = appContext;
         }
