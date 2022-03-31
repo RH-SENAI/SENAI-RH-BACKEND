@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Murillo\\Desktop\\Senai\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj": {}
+    "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Murillo\\Desktop\\Senai\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj": {
+    "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Murillo\\Desktop\\Senai\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
+        "projectUniqueName": "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
         "projectName": "SenaiRH-G1",
-        "projectPath": "C:\\Users\\Murillo\\Desktop\\Senai\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
-        "packagesPath": "C:\\Users\\Murillo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Murillo\\Desktop\\Senai\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\obj\\",
+        "projectPath": "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
+        "packagesPath": "C:\\Users\\52826143832.INFOSCS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Murillo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\52826143832.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,10 +40,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "BCrypt.Net-Next": {
-              "target": "Package",
-              "version": "[4.0.3, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[5.0.15, )"
