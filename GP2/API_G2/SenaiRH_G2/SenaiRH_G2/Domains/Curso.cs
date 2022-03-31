@@ -7,6 +7,13 @@ namespace SenaiRH_G2.Domains
 {
     public partial class Curso
     {
+        public Curso()
+        {
+            Comentariocursos = new HashSet<Comentariocurso>();
+            Cursofavoritos = new HashSet<Cursofavorito>();
+            Registrocursos = new HashSet<Registrocurso>();
+        }
+
         public int IdCurso { get; set; }
         public int IdEmpresa { get; set; }
         public string NomeCurso { get; set; }
@@ -19,5 +26,8 @@ namespace SenaiRH_G2.Domains
         public decimal MediaAvaliacaoCurso { get; set; }
 
         public virtual Empresa IdEmpresaNavigation { get; set; }
+        public virtual ICollection<Comentariocurso> Comentariocursos { get; set; }
+        public virtual ICollection<Cursofavorito> Cursofavoritos { get; set; }
+        public virtual ICollection<Registrocurso> Registrocursos { get; set; }
     }
 }
