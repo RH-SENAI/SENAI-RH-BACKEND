@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SenaiRH-G1</name>
+    </assembly>
+    <members>
+        <member name="M:SenaiRH_G1.Controllers.LoginController.Login(SenaiRH_G1.ViewModel.LoginViewModel)">
+            <summary>
+            Valida o Usuário
+            </summary>
+            <param name="email"></param>
+            <param name="senha"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

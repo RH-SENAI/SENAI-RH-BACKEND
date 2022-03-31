@@ -28,9 +28,9 @@ namespace SenaiRH_G1.Controllers
         /// <summary>
         /// Valida o Usuário
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="senha"></param>
-        /// <returns></returns>
+        /// <param name="email">Email do Usuário</param>
+        /// <param name="senha">Senha do Usuário</param>
+        /// <returns>O token do usuário logado</returns>
         [HttpPost]
         public IActionResult Login(LoginViewModel login)
         {

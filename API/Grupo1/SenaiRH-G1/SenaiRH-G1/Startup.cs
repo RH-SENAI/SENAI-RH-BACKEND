@@ -1,20 +1,34 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using SenaiRH_G1.Contexts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using SenaiRH_G1.Interfaces;
+using SenaiRH_G1.Repositories;
+using Microsoft.Extensions.FileProviders;
 
 namespace SenaiRH_G1
 {
     public class Startup
     {
+        public Startup(IConfiguration _configuration)
+        {
+            Configuration = _configuration;
+        }
+
+        public IConfiguration Configuration { get; set; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -41,7 +55,9 @@ namespace SenaiRH_G1
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SenaiRHG1.webAPI", Version = "v1" });
 
-                
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             services
@@ -64,6 +80,15 @@ namespace SenaiRH_G1
                         ValidAudience = "patrimonio.webAPI"
                     };
                 });
+
+            services.AddDbContext<SenaiRHContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Default"))
+            );
+
+
+            services.AddTransient<DbContext, SenaiRHContext>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,7 +99,28 @@ namespace SenaiRH_G1
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SenaiRH_GP1.WebAPI");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(),"StaticFiles")),
+                RequestPath = "/StaticFiles"
+            });
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
