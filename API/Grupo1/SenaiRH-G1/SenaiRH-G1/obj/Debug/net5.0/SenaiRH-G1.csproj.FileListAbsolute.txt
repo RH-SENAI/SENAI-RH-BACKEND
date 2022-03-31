@@ -130,3 +130,6 @@ C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1
 C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.xml
 C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.pdb
 C:\Users\Murillo\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.genruntimeconfig.cache
+C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.xml
+C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\bin\Debug\net5.0\SenaiRH-G1.xml
+C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\bin\Debug\net5.0\BCrypt.Net-Next.dll

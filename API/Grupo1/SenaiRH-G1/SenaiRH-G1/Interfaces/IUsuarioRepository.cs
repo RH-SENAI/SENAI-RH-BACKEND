@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SenaiRH_G1.Interfaces
 {
-    interface IUsuarioRepository
+    public interface IUsuarioRepository
     {
         Usuario Login(string email, string senha);
     }

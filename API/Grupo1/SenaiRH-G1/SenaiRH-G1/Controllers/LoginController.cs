@@ -20,7 +20,7 @@ namespace SenaiRH_G1.Controllers
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
-        private LoginController(IUsuarioRepository repo)
+        public LoginController(IUsuarioRepository repo)
         {
             _usuarioRepository = repo;
         }
@@ -28,8 +28,7 @@ namespace SenaiRH_G1.Controllers
         /// <summary>
         /// Valida o Usuário
         /// </summary>
-        /// <param name="email">Email do Usuário</param>
-        /// <param name="senha">Senha do Usuário</param>
+        /// <param name="login">Informações de login do usuário</param>
         /// <returns>O token do usuário logado</returns>
         [HttpPost]
         public IActionResult Login(LoginViewModel login)
@@ -40,7 +39,10 @@ namespace SenaiRH_G1.Controllers
 
                 if (usuarioBuscado == null)
                 {
-                    return BadRequest();
+                    return BadRequest(new
+                    {
+                        mensagem = "Email ou senha inváidos!"
+                    });
                 }
 
                 // Caso o usuário seja encontrado, prossegue para a criação do token

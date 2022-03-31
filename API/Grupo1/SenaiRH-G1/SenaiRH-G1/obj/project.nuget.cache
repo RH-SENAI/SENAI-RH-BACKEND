@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gw0mKGvhYBjueRSyMYvE0Sjo3nYKu+MsldrVwzuC4PwWTQfL2WJCyoNUnF6m4fpCgSxIU8x/TtgS0PtYXI1YcA==",
+  "dgSpecHash": "Mn1H4pqOLAyrPBLoZsQAk5vuY+XTlix2i8PxccjhBcL3Y9n9Hk+imRg4K+C2J4BRgL+bi4GT9jSDxrY62i+cgA==",
   "success": true,
   "projectFilePath": "C:\\Users\\44051078825.INFOSCS\\Desktop\\Senai\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\44051078825.INFOSCS\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\44051078825.INFOSCS\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\44051078825.INFOSCS\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.15\\microsoft.aspnetcore.authentication.jwtbearer.5.0.15.nupkg.sha512",
     "C:\\Users\\44051078825.INFOSCS\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.15\\microsoft.aspnetcore.jsonpatch.5.0.15.nupkg.sha512",
