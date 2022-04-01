@@ -9,6 +9,7 @@ namespace SenaiRH_G1.Domains
     {
         public Unidadesenai()
         {
+            Avaliacaounidadesenais = new HashSet<Avaliacaounidadesenai>();
             Usuarios = new HashSet<Usuario>();
         }
 
@@ -21,6 +22,7 @@ namespace SenaiRH_G1.Domains
         public string EmailUnidadeSenai { get; set; }
 
         public virtual Localizacao IdLocalizacaoNavigation { get; set; }
+        public virtual ICollection<Avaliacaounidadesenai> Avaliacaounidadesenais { get; set; }
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }
