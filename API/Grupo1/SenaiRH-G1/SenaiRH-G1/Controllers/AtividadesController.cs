@@ -18,11 +18,14 @@ namespace SenaiRH_G1.Controllers
     public class AtividadesController : ControllerBase
     {
         private readonly senaiRhContext _context;
-        public AtividadesController(senaiRhContext context)
+        private readonly IAtividadeRepository _usuarioRepository;
+        public AtividadesController(senaiRhContext context, IAtividadeRepository repo)
         {
             _context = context;
+            _usuarioRepository = repo;
         }
 
+        
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Atividade>>> GetAtividades()
@@ -66,6 +69,29 @@ namespace SenaiRH_G1.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet("MinhasAtividade/{id}")]
+        public IActionResult ListarMinhasAtividades(int id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    
+
+                    return Ok(_usuarioRepository.ListarMinhas(id));
+                }
+                return BadRequest(new
+                {
+                    Mensagem = "O ID inserido é inválido!"
+                });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);  
+            }
         }
     }
 }

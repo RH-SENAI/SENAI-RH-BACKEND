@@ -50,7 +50,8 @@ namespace SenaiRH_G1.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=senairh.database.windows.net; initial catalog=DBProjetoSenaiRH; user Id=admin_projeto; pwd=SenaiRH123*\n;");
+                //optionsBuilder.UseSqlServer("Data Source=senairh.database.windows.net; initial catalog=DBProjetoSenaiRH; user Id=admin_projeto; pwd=SenaiRH123*\n;");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-KCJ0MKP; initial catalog=SENAI_RH; integrated security=true;");
             }
         }
 

@@ -82,12 +82,13 @@ namespace SenaiRH_G1
                 });
 
             services.AddDbContext<senaiRhContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Default"))
+                options.UseSqlServer("Data Source=DESKTOP-KCJ0MKP; initial catalog=SENAI_RH; integrated security=true;")
             );
 
 
             services.AddTransient<DbContext, senaiRhContext>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IAtividadeRepository, AtividadeRepository>();
             
         }
 

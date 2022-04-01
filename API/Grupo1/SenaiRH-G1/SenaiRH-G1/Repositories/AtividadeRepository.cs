@@ -1,6 +1,7 @@
 ﻿using SenaiRH_G1.Contexts;
 using SenaiRH_G1.Domains;
 using SenaiRH_G1.Interfaces;
+using SenaiRH_G1.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,30 @@ namespace SenaiRH_G1.Repositories
             ctx.SaveChangesAsync();
         }
 
-        public List<Atividade> ListarMinhas(int id)
+        public List<MinhasAtividadesViewModel> ListarMinhas(int id)
         {
-            throw new NotImplementedException();
+            var listaMinhasAtividade = from atividades in ctx.Atividades
+                                       join minhasAtividades in ctx.Minhasatividades on atividades.IdAtividade equals minhasAtividades.IdAtividade
+                                       where minhasAtividades.IdUsuario == id
+                                       select new MinhasAtividadesViewModel
+                                       {
+                                           IdAtividade = atividades.IdAtividade,
+                                           NomeAtividade = atividades.NomeAtividade,
+                                           DataInicio = atividades.DataInicio,
+                                           DataCriacao = atividades.DataCriacao,
+                                           DataConclusao = atividades.DataConclusao,
+                                           DescricaoAtividade = atividades.DescricaoAtividade,
+                                           RecompensaMoeda = atividades.RecompensaMoeda,
+                                           RecompensaTrofeu = atividades.RecompensaTrofeu,
+                                           NecessarioValidar = atividades.NecessarioValidar,
+                                           IdMinhasAtividades = minhasAtividades.IdMinhasAtividades,
+                                           IdSetor = minhasAtividades.IdSetor,
+                                           IdUsuario = minhasAtividades.IdUsuario,
+                                           IdSituacaoAtividade = minhasAtividades.IdSituacaoAtividade
+                                       };
+                                       
+
+            return listaMinhasAtividade.ToList();
         }
 
         public List<Atividade> ListarTodas()
