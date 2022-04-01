@@ -33,27 +33,35 @@ namespace SenaiRH_G1.Controllers
             return await _context.Atividades.ToListAsync();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Atividade>> GetEquipamento(int id)
+        [HttpPost]
+        public IActionResult PostAtividade(Atividade atividade)
         {
-            var atividade = await _context.Atividades.FindAsync(id);
-
-            if (atividade == null)
+            try
             {
-                return NotFound();
+
+                if (atividade.NomeAtividade == null || atividade.DataInicio < DateTime.Now || atividade.DataInicio < DateTime.Now)
+                {
+                    return BadRequest(new
+                    {
+                        Mensagem = "Os dados estão incorretos"
+                    });
+                }
+                atividade.DataCriacao = DateTime.Now;
+                _context.Atividades.Add(atividade);
+                _context.SaveChanges();
+
+                return StatusCode(201, new
+                {
+                    Mensagem = "Atividade cadastrada",
+                    atividade
+                });
+            }
+            catch (Exception error)
+            {
+
+                return BadRequest(error.Message);
             }
 
-            return atividade;
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Atividade>> PostAtividade([FromForm] Atividade atividade)
-        {
-            atividade.DataCriacao = DateTime.Now;
-            _context.Atividades.Add(atividade);
-            await _context.SaveChangesAsync();
-
-            return Created("Atividade", atividade);
         }
 
         [HttpDelete("{id}")]
