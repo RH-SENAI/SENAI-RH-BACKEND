@@ -1,4 +1,5 @@
 ﻿using senai_gp3_webApi.Domains;
+using senai_gp3_webApi.ViewModels;
 using System.Collections.Generic;
 
 namespace senai_gp3_webApi
@@ -19,12 +20,11 @@ namespace senai_gp3_webApi
         /// <param name="idUsuario">Id do usuario</param>
         void DeletarUsuario(int idUsuario);
 
-
         /// <summary>
-        /// Cadastrar um Usuairo
+        /// Cadastrar um usuario
         /// </summary>
         /// <param name="novoUsuario">Objeto de usuario</param>
-        void CadastrarUsuario(Usuario novoUsuario);
+        void CadastrarUsuario(UsuarioCadastroViewModel novoUsuario);
 
         /// <summary>
         /// Atualiza um usuario

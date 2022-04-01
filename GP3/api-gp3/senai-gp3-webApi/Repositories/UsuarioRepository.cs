@@ -1,6 +1,7 @@
 ﻿using senai_gp3_webApi.Contexts;
 using senai_gp3_webApi.Domains;
 using senai_gp3_webApi.Utils;
+using senai_gp3_webApi.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,10 +26,33 @@ namespace senai_gp3_webApi.Repositories
             throw new System.NotImplementedException();
         }
 
-        public void CadastrarUsuario(Usuario novoUsuario)
+        public void CadastrarUsuario(UsuarioCadastroViewModel novoUsuario)
         {
-            throw new System.NotImplementedException();
+            Usuario usuario = new Usuario()
+            {
+                Nome = novoUsuario.Nome,
+                Email = novoUsuario.Email,
+                Senha = novoUsuario.Senha,
+                Cpf = novoUsuario.Cpf,
+                CaminhoFotoPerfil = novoUsuario.CaminhoFotoPerfil,
+                DataNascimento = novoUsuario.DataNascimento,
+                IdTipoUsuario = novoUsuario.IdTipoUsuario,
+                Trofeus = novoUsuario.Trofeus,
+                IdCargo = novoUsuario.IdCargo,
+                IdUnidadeSenai = novoUsuario.IdUnidadeSenai,
+                LocalizacaoUsuario = novoUsuario.LocalizacaoUsuario,
+                NivelSatisfacao = novoUsuario.NivelSatisfacao,
+                Salario = novoUsuario.Salario,
+                SaldoMoeda = novoUsuario.SaldoMoeda,
+                Vantagens = novoUsuario.Vantagens
+            };
+
+            ctx.Usuarios.Add(usuario);
+
+
+            ctx.SaveChanges();
         }
+
 
         public string CalcularMediaAvaliacao(int idUsuario)
         {

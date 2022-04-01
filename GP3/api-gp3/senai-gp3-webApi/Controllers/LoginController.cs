@@ -25,20 +25,6 @@ namespace senai_gp3_webApi.Controllers
             _usuarioRepository = repo;
         }
 
-        // GET: api/<UsuariosController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<UsuariosController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<UsuariosController>
         [HttpPost]
         public IActionResult Logar(LoginViewModel login)
@@ -115,18 +101,6 @@ namespace senai_gp3_webApi.Controllers
                     }
                     );
             }
-        }
-
-        // PUT api/<UsuariosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UsuariosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

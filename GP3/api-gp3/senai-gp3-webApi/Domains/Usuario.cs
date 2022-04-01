@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -30,6 +31,7 @@ namespace senai_gp3_webApi.Domains
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
         public short Vantagens { get; set; }
         public decimal NivelSatisfacao { get; set; }

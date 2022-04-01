@@ -1,0 +1,54 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace senai_gp3_webApi.ViewModels
+{
+    public class UsuarioCadastroViewModel
+    {
+
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public byte IdCargo { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public int IdUnidadeSenai { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public byte IdTipoUsuario { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public string Nome { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public string Email { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public string Senha { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [DataType(DataType.Date)]
+        public DateTime DataNascimento { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public short Vantagens { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public decimal NivelSatisfacao { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public string Cpf { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public int SaldoMoeda { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public int Trofeus { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public string LocalizacaoUsuario { get; set; }
+        
+        public string CaminhoFotoPerfil { get; set; }
+        
+        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        public decimal Salario { get; set; }
+    }
+}
