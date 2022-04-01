@@ -88,6 +88,7 @@ namespace SenaiRH_G1
 
             services.AddTransient<DbContext, senaiRhContext>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IAtividadeRepository, AtividadeRepository>();
             
         }
 

@@ -59,7 +59,6 @@ namespace SenaiRH_G1.Controllers
                 return BadRequest(error.Message);
             }
 
-            return Created("Atividade", atividade);
         }
 
         [HttpDelete("{id}")]
