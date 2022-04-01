@@ -65,3 +65,4 @@ C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\SENAI-RH-BACKEND\API
 C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.xml
 C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.pdb
 C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.genruntimeconfig.cache
+C:\Users\44051078825.INFOSCS\Desktop\Senai\SENAI-RH-BACKEND\SENAI-RH-BACKEND\API\Grupo1\SenaiRH-G1\SenaiRH-G1\obj\Debug\net5.0\SenaiRH-G1.csproj.AssemblyReference.cache

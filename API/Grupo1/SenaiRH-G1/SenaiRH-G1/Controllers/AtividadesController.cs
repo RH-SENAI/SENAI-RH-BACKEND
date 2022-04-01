@@ -18,11 +18,11 @@ namespace SenaiRH_G1.Controllers
     public class AtividadesController : ControllerBase
     {
         private readonly senaiRhContext _context;
-        private readonly IAtividadeRepository _usuarioRepository;
+        private readonly IAtividadeRepository _atividadeRepository;
         public AtividadesController(senaiRhContext context, IAtividadeRepository repo)
         {
             _context = context;
-            _usuarioRepository = repo;
+            _atividadeRepository = repo;
         }
 
         
@@ -80,7 +80,7 @@ namespace SenaiRH_G1.Controllers
                 {
                     
 
-                    return Ok(_usuarioRepository.ListarMinhas(id));
+                    return Ok(_atividadeRepository.ListarMinhas(id));
                 }
                 return BadRequest(new
                 {
@@ -91,6 +91,68 @@ namespace SenaiRH_G1.Controllers
             {
 
                 return BadRequest(ex);  
+            }
+        }
+
+        [HttpPost("Associar/{idUsuario}")]
+        public IActionResult AssociarAtividade(int idUsuario, int idAtividade)
+        {
+            try
+            {
+                Atividade atividade = _context.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+                Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+                if (usuario != null && atividade != null)
+                {
+                    _atividadeRepository.AssociarAtividade(idUsuario, idAtividade);
+
+                    return Ok(new
+                    {
+                        Mensagem = "O usuário foi associado a atividade!"
+                    });
+                }
+                else
+                {
+                    return BadRequest(new
+                    {
+                        Mensagem = "O ID usuário ou o ID Atividade são inválidos;"
+                    });
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPut("FinalizarAtividade/{idUsuario}")]
+        public IActionResult FinalizarAtividade(int idUsuario, int idAtividade)
+        {
+            try
+            {
+                Atividade atividade = _context.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+                Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+                if (atividade != null && usuario != null)
+                {
+                    _atividadeRepository.FinalizarAtividade(idUsuario, idAtividade);
+
+                    return Ok(new
+                    {
+                        Mensagem = "A atividade foi finalizada!"
+                    });
+                }
+                return BadRequest(new
+                {
+                    Mensagem = "Os ID's informados são inválidos!"
+                });
+                
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
             }
         }
     }

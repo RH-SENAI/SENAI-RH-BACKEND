@@ -1,10 +1,14 @@
-﻿using SenaiRH_G1.Contexts;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using SenaiRH_G1.Contexts;
 using SenaiRH_G1.Domains;
 using SenaiRH_G1.Interfaces;
 using SenaiRH_G1.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SenaiRH_G1.Repositories
@@ -21,13 +25,21 @@ namespace SenaiRH_G1.Repositories
         {
             Minhasatividade novaAssociacao = new Minhasatividade();
             Usuario usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+            Atividade atividade = ctx.Atividades.FirstOrDefault(u => u.IdAtividade == idAtividade);
+            Cargo cargo = ctx.Cargos.FirstOrDefault(u => u.IdCargo == usuario.IdCargo);
 
-            novaAssociacao.IdUsuario = idUsuario;
-            novaAssociacao.IdAtividade = idAtividade;
-            novaAssociacao.IdSetor = usuario.IdCargoNavigation.IdSetor;
-            novaAssociacao.IdSituacaoAtividade = 3;
+            if (atividade != null && usuario != null)
+            {
+                novaAssociacao.IdUsuario = idUsuario;
+                novaAssociacao.IdAtividade = idAtividade;
+                novaAssociacao.IdSetor = cargo.IdSetor;
+                novaAssociacao.IdSituacaoAtividade = 3;
 
-            ctx.Minhasatividades.Add(novaAssociacao);
+                ctx.Minhasatividades.Add(novaAssociacao);
+                ctx.SaveChanges();
+            }
+
+           
         }
 
         public Atividade BuscarPorId(int id)
@@ -78,6 +90,21 @@ namespace SenaiRH_G1.Repositories
         {
             ctx.Atividades.Remove(atividade);
             ctx.SaveChangesAsync();
+        }
+
+        [Authorize]
+        public void FinalizarAtividade(int idUsuario, int idAtividade)
+        {
+            Minhasatividade minhasAtividade = ctx.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
+            Atividade atividade = ctx.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+            if (atividade.NecessarioValidar)
+            {
+                if (true)
+                {
+                    
+                }
+            }
+            
         }
     }
 }
