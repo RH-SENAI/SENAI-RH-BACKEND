@@ -6,14 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-    <Folder Include="StaticFiles\" />
-=======
+    <Compile Remove="StaticFiles\NovaPasta\**" />
+    <Content Remove="StaticFiles\NovaPasta\**" />
+    <EmbeddedResource Remove="StaticFiles\NovaPasta\**" />
+    <None Remove="StaticFiles\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="StaticFiles\Images\Class.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+
     <Folder Include="Interfaces\" />
     <Folder Include="Controllers\" />
     <Folder Include="Repositories\" />
     <Folder Include="StaticFiles\Images\" />
->>>>>>> a7b5181d744d7ac390c8f268b39853902760fa68
+
   </ItemGroup>
 
   <ItemGroup>

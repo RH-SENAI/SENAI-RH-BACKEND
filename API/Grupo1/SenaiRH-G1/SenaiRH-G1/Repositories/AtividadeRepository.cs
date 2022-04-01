@@ -28,7 +28,7 @@ namespace SenaiRH_G1.Repositories
 
         public List<Atividade> ListarMinhas(int id)
         {
-            throw new NotImplementedException();
+            
         }
 
         public List<Atividade> ListarTodas()
