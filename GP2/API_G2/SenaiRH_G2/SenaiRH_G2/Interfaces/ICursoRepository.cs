@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SenaiRH_G2.Interfaces
 {
-    interface ICursoRepository
+    public interface ICursoRepository
     {
 
         List<Curso> ListarTodos();

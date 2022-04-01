@@ -20,6 +20,7 @@ namespace SenaiRH_G2.Domains
         public int RecompensaTrofeu { get; set; }
         public string DescricaoAtividade { get; set; }
         public bool NecessarioValidar { get; set; }
+        public DateTime? DataCriacao { get; set; }
 
         public virtual ICollection<Minhasatividade> Minhasatividades { get; set; }
     }

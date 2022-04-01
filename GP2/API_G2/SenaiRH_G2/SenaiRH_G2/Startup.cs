@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using SenaiRH_G2.Contexts;
+using SenaiRH_G2.Interfaces;
+using SenaiRH_G2.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,7 +75,11 @@ namespace SenaiRH_G2
                             ValidIssuer = "SENAIRH.webAPI",
                             ValidAudience = "SENAIRH.webAPI"
                         };
+
                     });
+
+            services.AddTransient<DbContext, SenaiRHContext>();
+            services.AddTransient<ICursoRepository, CursoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
