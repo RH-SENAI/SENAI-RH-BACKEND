@@ -16,6 +16,20 @@ namespace SenaiRH_G1.Repositories
         {
             ctx = appContext;
         }
+
+        public void AssociarAtividade(int idUsuario, int idAtividade)
+        {
+            Minhasatividade novaAssociacao = new Minhasatividade();
+            Usuario usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+            novaAssociacao.IdUsuario = idUsuario;
+            novaAssociacao.IdAtividade = idAtividade;
+            novaAssociacao.IdSetor = usuario.IdCargoNavigation.IdSetor;
+            novaAssociacao.IdSituacaoAtividade = 3;
+
+            ctx.Minhasatividades.Add(novaAssociacao);
+        }
+
         public Atividade BuscarPorId(int id)
         {
             return ctx.Atividades.FirstOrDefault(c => c.IdAtividade == id);
