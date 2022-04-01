@@ -35,7 +35,7 @@ namespace senai_gp3_webApi.Utils
                         {
                             arquivo.CopyTo(stream);
                         }
-                        return caminhoCompleto;
+                        return novoNome;
                     }
                     return "Extensão não permitida";
                 }

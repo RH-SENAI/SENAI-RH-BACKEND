@@ -23,11 +23,19 @@ namespace senai_gp3_webApi.Controllers
             _usuarioRepository = repo;
         }
 
-        // GET: api/<UsuariosController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("Listar")]
+        public IActionResult ListarUsuario()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return Ok(_usuarioRepository.ListarUsuario());
+
+            }
+            catch (Exception execp)
+            {
+
+                return BadRequest(execp);
+            }
         }
 
         // GET api/<UsuariosController>/5
@@ -42,23 +50,31 @@ namespace senai_gp3_webApi.Controllers
         {
             try
             {
-                #region Upload da Imagem com extensões permitidas apenas
-                string[] extensoesPermitidas = { "jpg", "png", "jpeg" };
-                string uploadResultado = Upload.UploadFile(fotoPerfil, extensoesPermitidas);
-
-                if (uploadResultado == "")
+                if (fotoPerfil == null)
                 {
-                    return BadRequest("Arquivo não encontrado !");
-                }
-                if (uploadResultado == "Extensão não permitida")
+                    novoUsuario.CaminhoFotoPerfil = "imagem-padrao.png";
+                } else
                 {
-                    return BadRequest("Extensão do arquivo não permitida");
+                    #region Upload da Imagem com extensões permitidas apenas
+                    string[] extensoesPermitidas = { "jpg", "png", "jpeg" };
+                    string uploadResultado = Upload.UploadFile(fotoPerfil, extensoesPermitidas);
+
+                    if (uploadResultado == "")
+                    {
+                        return BadRequest("Arquivo não encontrado !");
+                    }
+                    if (uploadResultado == "Extensão não permitida")
+                    {
+                        return BadRequest("Extensão do arquivo não permitida");
+                    }
+
+                    novoUsuario.CaminhoFotoPerfil = uploadResultado;
+                    #endregion
                 }
 
-                novoUsuario.CaminhoFotoPerfil = uploadResultado;
-                #endregion
 
-                if(novoUsuario == null)
+
+                if (novoUsuario == null)
                 {
                     return BadRequest("Todos os campos do usuario devem ser preenchidos !");
                 } else

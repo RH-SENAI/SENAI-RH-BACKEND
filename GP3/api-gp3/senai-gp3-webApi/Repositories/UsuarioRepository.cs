@@ -76,7 +76,7 @@ namespace senai_gp3_webApi.Repositories
 
         public List<Usuario> ListarUsuario()
         {
-            throw new System.NotImplementedException();
+            return ctx.Usuarios.ToList();
         }
 
         public Usuario ListarUsuarioPorId(int idUsuario)

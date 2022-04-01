@@ -28,22 +28,17 @@ namespace senai_gp3_webApi.ViewModels
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
         public short Vantagens { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
         public decimal NivelSatisfacao { get; set; }
         
         [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
         public string Cpf { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
         public int SaldoMoeda { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
         public int Trofeus { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
         public string LocalizacaoUsuario { get; set; }
         
         public string CaminhoFotoPerfil { get; set; }
