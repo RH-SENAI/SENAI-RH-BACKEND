@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using SenaiRH_G2.Interfaces;
+using SenaiRH_G2.Repositores;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -72,7 +74,16 @@ namespace SenaiRH_G2
                             ValidAudience = "SENAIRH.webAPI"
                         };
                     });
+
+
+
+
+
+            services.AddTransient<IComentarioCursoRepository, ComentarioCursoRepository>();
+            services.AddTransient<IComentarioDescontoRepository, ComentarioDescontoRepository>();
+
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -4,5 +4,143 @@
         <name>SenaiRH_G2</name>
     </assembly>
     <members>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioCursosController.ListarComenatarioCurso">
+            <summary>
+            Listar todos s comentarios dos cursos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioCursosController.ListarComentarioPorIdCurso(System.Int32)">
+            <summary>
+            Listar um comentario pelo seu id
+            </summary>
+            <param name="id">id Comentario</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioCursosController.ExcluirComentarioCurso(System.Int32)">
+            <summary>
+            Deletar um comentario pelo seu id
+            </summary>
+            <param name="id">Id do cometario</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioCursosController.CadastrarComentarioCurso(SenaiRH_G2.Domains.Comentariocurso,System.Int32,System.Int32)">
+            <summary>
+            Cadastrar um novo comentario
+            </summary>
+            <param name="NovoComentario">Dados do novo comentario</param>
+            <param name="idcurso">id do curso cujo comentario faz parte </param>
+            <param name="idUsuario">Id do usuario que cadastrou esse comentario</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioCursosController.AlterarComentarioCurso(System.Int32,SenaiRH_G2.Domains.Comentariocurso)">
+            <summary>
+            Atualizar comentario
+            </summary>
+            <param name="Id">Id comentario</param>
+            <param name="comentarioAtualizado">dados a serem atualizados</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioDescontosController.ListarComenatarioDesconto">
+            <summary>
+            Listar todos s comentarios dos cursos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioDescontosController.ListarComentarioPorIdDesconto(System.Int32)">
+            <summary>
+            Listar um comentario pelo seu id
+            </summary>
+            <param name="id">id Comentario</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioDescontosController.ExcluirComentarioDesconto(System.Int32)">
+            <summary>
+            Deletar um comentario pelo seu id
+            </summary>
+            <param name="id">Id do cometario</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioDescontosController.CadastrarComentarioDesconto(SenaiRH_G2.Domains.Comentariodesconto,System.Int32,System.Int32)">
+            <summary>
+            Cadastrar um novo comentario
+            </summary>
+            <param name="NovoComentario">Dados do novo comentario</param>
+            <param name="idcurso">id do curso cujo comentario faz parte </param>
+            <param name="idUsuario">Id do usuario que cadastrou esse comentario</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Controllers.ComentarioDescontosController.AlterarComentarioDesconto(System.Int32,SenaiRH_G2.Domains.Comentariodesconto)">
+            <summary>
+            Atualizar comentario
+            </summary>
+            <param name="Id">Id comentario</param>
+            <param name="comentarioAtualizado">dados a serem atualizados</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioCursoRepository.AlterarComentarioCurso(System.Int32,SenaiRH_G2.Domains.Comentariocurso)">
+            <summary>
+            Alterar um cometario 
+            </summary>
+            <param name="Id">Id do comentario</param>
+            <param name="comentarioAtualizado">Dados do comentario atualizado</param>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioCursoRepository.CadastrarComentarioCurso(SenaiRH_G2.Domains.Comentariocurso)">
+            <summary>
+            Cadastrar um novo comentario
+            </summary>
+            <param name="NovoComentario">Dados no novo comentario</param>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioCursoRepository.ExcluirComentarioCurso(System.Int32)">
+            <summary>
+            Excluir um comentario 
+            </summary>
+            <param name="Id">Id do comentario</param>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioCursoRepository.ListarComenatarioCurso">
+            <summary>
+            Listar todos os comentarios 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioCursoRepository.ListarComentarioPorIdCurso(System.Int32)">
+            <summary>
+            Listar comentarios pelo seu id 
+            </summary>
+            <param name="Id">Id comentario</param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioDescontoRepository.AlterarComentarioDesconto(System.Int32,SenaiRH_G2.Domains.Comentariodesconto)">
+            <summary>
+            Alterar um cometario 
+            </summary>
+            <param name="Id">Id do comentario</param>
+            <param name="comentarioAtualizado">Dados do comentario atualizado</param>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioDescontoRepository.CadastrarComentarioDesconto(SenaiRH_G2.Domains.Comentariodesconto)">
+            <summary>
+            Cadastrar um novo comentario
+            </summary>
+            <param name="NovoComentario">Dados no novo comentario</param>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioDescontoRepository.ExcluirComentarioDesconto(System.Int32)">
+            <summary>
+            Excluir um comentario 
+            </summary>
+            <param name="Id">Id do comentario</param>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioDescontoRepository.ListarComenatarioDesconto">
+            <summary>
+            Listar todos os comentarios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiRH_G2.Repositores.ComentarioDescontoRepository.ListarComentarioPorIdDesconto(System.Int32)">
+            <summary>
+            Listar comentarios pelo seu id 
+            </summary>
+            <param name="Id">id comentario</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
