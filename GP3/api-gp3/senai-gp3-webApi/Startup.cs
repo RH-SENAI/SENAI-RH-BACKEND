@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using senai_gp3_webApi.Contexts;
+using senai_gp3_webApi.Interfaces;
 using senai_gp3_webApi.Repositories;
 using System;
 using System.Collections.Generic;
@@ -106,6 +107,7 @@ namespace senai_gp3_webApi
 
             services.AddTransient<DbContext, senaiRhContext>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IDecisaoRepository, DecisaoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

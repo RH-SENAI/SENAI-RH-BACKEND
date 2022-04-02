@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace senai_gp3_webApi.Interfaces
 {
-    interface IAvaliacaoUsuario
+    interface IAvaliacaoUsuarioRepository
     {
     }
 }
