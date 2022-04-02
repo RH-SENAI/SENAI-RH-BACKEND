@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace senai_gp3_webApi.Controllers
 {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class FeedbacksController : ControllerBase
     {
