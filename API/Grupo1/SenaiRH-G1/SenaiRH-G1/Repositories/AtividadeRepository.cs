@@ -92,19 +92,53 @@ namespace SenaiRH_G1.Repositories
             ctx.SaveChangesAsync();
         }
 
-        [Authorize]
-        public void FinalizarAtividade(int idUsuario, int idAtividade)
+        
+        public void FinalizarAtividade(int idUsuario, int idAtividade, int idTipoUsuario)
         {
-            Minhasatividade minhasAtividade = ctx.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
+            Minhasatividade minhaAtividade = ctx.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
             Atividade atividade = ctx.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
-            if (atividade.NecessarioValidar)
+            Usuario usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+            if (minhaAtividade != null)
             {
-                if (true)
+                if(atividade.NecessarioValidar)
                 {
-                    
+                    minhaAtividade.IdSituacaoAtividade = 2;
+                    ctx.Minhasatividades.Update(minhaAtividade);
+                    ctx.SaveChanges();
                 }
+                else
+                {
+                    minhaAtividade.IdSituacaoAtividade = 1;
+                    usuario.SaldoMoeda = usuario.SaldoMoeda + atividade.RecompensaMoeda;
+                    usuario.Trofeus = usuario.Trofeus + atividade.RecompensaTrofeu;
+                    ctx.Minhasatividades.Update(minhaAtividade);
+                    ctx.Usuarios.Update(usuario);
+                    ctx.SaveChanges();
+                }
+
             }
             
+        }
+
+        
+        public void ValidarAtividade(int idAtividade, int idUsuario)
+        {
+            Minhasatividade minhaAtividade = ctx.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
+            Atividade atividade = ctx.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+            Usuario usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+            if (minhaAtividade != null)
+            {
+                if(minhaAtividade.IdSituacaoAtividade == 2)
+                {
+                    minhaAtividade.IdSituacaoAtividade = 1;
+                    usuario.SaldoMoeda = usuario.SaldoMoeda + atividade.RecompensaMoeda;
+                    usuario.Trofeus = usuario.Trofeus + atividade.RecompensaTrofeu;
+                    ctx.Usuarios.Update(usuario);
+                    ctx.Minhasatividades.Update(minhaAtividade);
+                    ctx.SaveChanges();
+                }
+            }
         }
     }
 }

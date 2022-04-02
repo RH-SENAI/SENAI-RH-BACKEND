@@ -74,10 +74,10 @@ namespace SenaiRH_G1
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("patrimonio-chave-autenticacao")),
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("senairh-autenticacao-token")),
                         ClockSkew = TimeSpan.FromMinutes(30),
-                        ValidIssuer = "patrimonio.webAPI",
-                        ValidAudience = "patrimonio.webAPI"
+                        ValidIssuer = "SenaiRH_G1.WebApi",
+                        ValidAudience = "SenaiRH_G1.WebApi"
                     };
                 });
 

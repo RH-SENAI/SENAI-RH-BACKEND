@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SenaiRH_G1.Contexts;
@@ -7,7 +8,9 @@ using SenaiRH_G1.Interfaces;
 using SenaiRH_G1.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SenaiRH_G1.Controllers
@@ -134,28 +137,100 @@ namespace SenaiRH_G1.Controllers
             }
         }
 
-        [HttpPut("FinalizarAtividade/{idUsuario}")]
-        public IActionResult FinalizarAtividade(int idUsuario, int idAtividade)
+        [Authorize]
+        [HttpPatch("FinalizarAtividade/{idAtividade}")]
+        public IActionResult FinalizarAtividade(int idAtividade)
         {
             try
             {
+                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
                 Atividade atividade = _context.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
                 Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+                Minhasatividade minhaAtividade = _context.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
 
                 if (atividade != null && usuario != null)
                 {
-                    _atividadeRepository.FinalizarAtividade(idUsuario, idAtividade);
-
-                    return Ok(new
+                    if (minhaAtividade != null)
                     {
-                        Mensagem = "A atividade foi finalizada!"
+
+                        _atividadeRepository.FinalizarAtividade(idUsuario, idAtividade, usuario.IdTipoUsuario);
+
+                    if (atividade.NecessarioValidar)
+                    {
+                        return Ok(new
+                        {
+                            Mensagem = "Sua atividade está aguardando confirmação do administrador!"
+                        });
+                    }
+                    else
+                    {
+                        return Ok(new
+                        {
+                            Mensagem = "Sua atividade foi finalizada com sucesso!"
+                        });
+                    }
+                    }
+                    else
+                    {
+                        return BadRequest(new
+                        {
+                            Mensagem = "O usuário não está associado a atividade"
+                        });
+                    }
+
+                }
+                else
+                {
+                    return BadRequest(new
+                    {
+                        Mensagem = "Os ID's informados são inválidos!"
+                    });
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+        }
+
+        [Authorize(Roles = "2")]
+        [HttpPatch("ValidarAtividade/{idAtividade}/{idUsuario}")]
+        public IActionResult ValidarAtividade(int idAtividade, int idUsuario)
+        {
+            try
+            {
+                Minhasatividade minhaAtividade = _context.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
+                Atividade atividade = _context.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+                Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+                if(atividade != null && usuario != null)
+                {
+                    if (minhaAtividade != null)
+                    {
+                        _atividadeRepository.ValidarAtividade(idAtividade, idUsuario);
+                        return Ok(new
+                        {
+                            Mensagem = "A atividade foi validada!"
+                        });
+                    }
+                    else
+                    {
+                        return BadRequest(new
+                        {
+                            Mensagem = "O usuário não está associado a essa atividade!"
+                        });
+                    }
+                }
+                else
+                {
+                    return BadRequest(new
+                    {
+                        Mensagem = "Os ID's inseridos são inválidos!"
                     });
                 }
-                return BadRequest(new
-                {
-                    Mensagem = "Os ID's informados são inválidos!"
-                });
-                
             }
             catch (Exception ex)
             {
