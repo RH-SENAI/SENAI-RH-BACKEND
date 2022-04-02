@@ -46,7 +46,7 @@ namespace senai_gp3_webApi.Repositories
 
         public List<Feedback> ListarFb()
         {
-            throw new NotImplementedException();
+            return ctx.Feedbacks.ToList();
         }
 
         public Feedback ListarFbPorId(int idFeedback)

@@ -22,10 +22,10 @@ namespace senai_gp3_webApi.Controllers
         }
 
         // GET: api/<FeedbacksController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("Listar")]
+        public IActionResult ListarFeedbacks()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_feedBacksRepostory.ListarFb());
         }
 
         // GET api/<FeedbacksController>/5
