@@ -5753,34 +5753,19 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\44051078825.INFOSCS\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\52826143832.INFOSCS\\.nuget\\packages\\": {}
->>>>>>> 7673f17262d95e5eca624f67ffc3b282e4894f2b
+    "C:\\Users\\fabio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\44051078825.INFOSCS\\Desktop\\Senai\\SENAI-RH-BACKEND\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
+      "projectUniqueName": "E:\\HD\\senai_2t\\Projeto_SenaiRh\\SenaiBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
       "projectName": "SenaiRH-G1",
-      "projectPath": "C:\\Users\\44051078825.INFOSCS\\Desktop\\Senai\\SENAI-RH-BACKEND\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
-      "packagesPath": "C:\\Users\\44051078825.INFOSCS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\44051078825.INFOSCS\\Desktop\\Senai\\SENAI-RH-BACKEND\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\obj\\",
+      "projectPath": "E:\\HD\\senai_2t\\Projeto_SenaiRh\\SenaiBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
+      "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
+      "outputPath": "E:\\HD\\senai_2t\\Projeto_SenaiRh\\SenaiBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\44051078825.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
-      "projectName": "SenaiRH-G1",
-      "projectPath": "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\SenaiRH-G1.csproj",
-      "packagesPath": "C:\\Users\\52826143832.INFOSCS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\52826143832.INFOSCS\\Desktop\\SenaiRHBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\52826143832.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 7673f17262d95e5eca624f67ffc3b282e4894f2b
+        "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5861,8 +5846,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache E:\\HD\\senai_2t\\Projeto_SenaiRh\\SenaiBackEnd\\SENAI-RH-BACKEND\\API\\Grupo1\\SenaiRH-G1\\SenaiRH-G1\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

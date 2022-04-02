@@ -39,7 +39,7 @@ namespace SenaiRH_G1.Controllers
             try
             {
 
-                if (atividade.NomeAtividade == null || atividade.DataInicio < DateTime.Now || atividade.DataInicio < DateTime.Now)
+                if (atividade.NomeAtividade == null)
                 {
                     return BadRequest(new
                     {
