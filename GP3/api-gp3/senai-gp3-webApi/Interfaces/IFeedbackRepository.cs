@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace senai_gp3_webApi.Interfaces
 {
-    interface IFeedbackRepository
+    public interface IFeedbackRepository
     {
         /// <summary>
         /// Lista todos os Feedbacks

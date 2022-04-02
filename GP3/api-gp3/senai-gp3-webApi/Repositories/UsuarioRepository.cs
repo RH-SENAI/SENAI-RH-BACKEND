@@ -30,6 +30,7 @@ namespace senai_gp3_webApi.Repositories
         {
             Usuario usuario = new Usuario()
             {
+ 
                 Nome = novoUsuario.Nome,
                 Email = novoUsuario.Email,
                 Senha = novoUsuario.Senha,

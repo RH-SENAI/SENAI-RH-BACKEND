@@ -108,6 +108,7 @@ namespace senai_gp3_webApi
             services.AddTransient<DbContext, senaiRhContext>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IDecisaoRepository, DecisaoRepository>();
+            services.AddTransient<IFeedbackRepository, FeedBackRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

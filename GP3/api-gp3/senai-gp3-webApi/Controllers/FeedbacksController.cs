@@ -12,49 +12,41 @@ namespace senai_gp3_webApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DecisoesController : ControllerBase
+    public class FeedbacksController : ControllerBase
     {
-        private readonly IDecisaoRepository _decisaoRepository;
+        private readonly IFeedbackRepository _feedBacksRepostory;
 
-        public DecisoesController(IDecisaoRepository repo)
+        public FeedbacksController(IFeedbackRepository repo)
         {
-            _decisaoRepository = repo;
+            _feedBacksRepostory = repo;
         }
 
-
-        // GET: api/<DecisoesController>
-        [HttpGet("Listar")]
-        public IActionResult ListarDecisoes()
+        // GET: api/<FeedbacksController>
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
-            try
-            {
-                return Ok(_decisaoRepository.ListarDecisoes());
-            }
-            catch (Exception execp)
-            {
-                return BadRequest(execp);
-            }
+            return new string[] { "value1", "value2" };
         }
 
-        // GET api/<DecisoesController>/5
+        // GET api/<FeedbacksController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<DecisoesController>
+        // POST api/<FeedbacksController>
         [HttpPost("Cadastrar")]
-        public IActionResult CadastrarDecisoes(Decisao novaDecisao)
+        public IActionResult CadastrarFeedback(Feedback novoFeedback)
         {
             try
             {
-                if (novaDecisao == null)
+                if (novoFeedback == null)
                 {
-                    return BadRequest("Objeto Vazio!");
+                    return BadRequest("Objeto não pode estar vazio!");
                 } else
                 {
-                    _decisaoRepository.CadastrarDecisao(novaDecisao);
+                    
                     return StatusCode(201);
                 }
             }
@@ -64,13 +56,13 @@ namespace senai_gp3_webApi.Controllers
             }
         }
 
-        // PUT api/<DecisoesController>/5
+        // PUT api/<FeedbacksController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<DecisoesController>/5
+        // DELETE api/<FeedbacksController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

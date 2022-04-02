@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -12,6 +13,7 @@ namespace senai_gp3_webApi.Domains
         public int IdUsuario { get; set; }
         public string ComentarioFeedBack { get; set; }
         public decimal NotaDecisao { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DataPublicacao { get; set; }
         public int ValorMoedas { get; set; }
 

@@ -1,0 +1,62 @@
+﻿using senai_gp3_webApi.Contexts;
+using senai_gp3_webApi.Domains;
+using senai_gp3_webApi.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace senai_gp3_webApi.Repositories
+{
+    public class FeedBackRepository : IFeedbackRepository
+    {
+        private readonly senaiRhContext ctx;
+
+        public FeedBackRepository(senaiRhContext appContext)
+        {
+            ctx = appContext;
+        }
+
+        public void AtualizarFb(int idFeedback, Feedback feedbackAtualizado)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AvaliarDecisao(int idDecisaoAvaliada, decimal notaDecisao)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CadastrarFb(Feedback novoFeedback)
+        {
+            ctx.Feedbacks.Add(novoFeedback);
+
+            ctx.SaveChanges();
+        }
+
+        public decimal CalcularMediaFb(List<Feedback> todosFeedbacks)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeletarFb(int idFeedback)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Feedback> ListarFb()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Feedback ListarFbPorId(int idFeedback)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Feedback VerificarFeedback(Feedback feedback)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
