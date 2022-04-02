@@ -24,9 +24,16 @@ namespace senai_gp3_webApi.Controllers
 
         // GET: api/<DecisoesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult ListarDecisoes()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return Ok(_decisaoRepository.ListarDecisoes());
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
         }
 
         // GET api/<DecisoesController>/5

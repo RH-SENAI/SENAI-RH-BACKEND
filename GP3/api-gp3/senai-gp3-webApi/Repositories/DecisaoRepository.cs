@@ -41,7 +41,7 @@ namespace senai_gp3_webApi.Repositories
 
         public List<Decisao> ListarDecisoes()
         {
-            throw new NotImplementedException();
+            return ctx.Decisaos.ToList();
         }
 
         public Decisao VerificarDecisao(Decisao decisao)

@@ -76,7 +76,37 @@ namespace senai_gp3_webApi.Repositories
 
         public List<Usuario> ListarUsuario()
         {
-            return ctx.Usuarios.ToList();
+            return ctx.Usuarios
+                .Select(u => new Usuario
+                {
+                    Nome = u.Nome,
+                    Email = u.Email,
+                    Senha = u.Senha,
+                    Cpf = u.Cpf,
+                    CaminhoFotoPerfil = u.CaminhoFotoPerfil,
+                    DataNascimento = u.DataNascimento,
+                    IdTipoUsuario = u.IdTipoUsuario,
+                    Trofeus = u.Trofeus,
+                    IdCargo = u.IdCargo,
+                    IdUnidadeSenai = u.IdUnidadeSenai,
+                    LocalizacaoUsuario = u.LocalizacaoUsuario,
+                    NivelSatisfacao = u.NivelSatisfacao,
+                    Salario = u.Salario,
+                    SaldoMoeda = u.SaldoMoeda,
+                    Vantagens = u.Vantagens,
+                    IdCargoNavigation = new Cargo() 
+                    {
+                        IdCargo = u.IdCargoNavigation.IdCargo,
+                        NomeCargo = u.IdCargoNavigation.NomeCargo
+                    },
+                    IdTipoUsuarioNavigation = new Tipousuario() 
+                    {
+                        IdTipoUsuario = u.IdTipoUsuarioNavigation.IdTipoUsuario,
+                        NomeTipoUsuario = u.IdTipoUsuarioNavigation.NomeTipoUsuario
+                    }
+                    
+                }).
+                ToList();
         }
 
         public Usuario ListarUsuarioPorId(int idUsuario)
