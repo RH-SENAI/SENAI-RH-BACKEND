@@ -60,7 +60,6 @@ namespace senai_gp3_webApi.Repositories
                     usuarioAchado.DataNascimento = usuarioAtualizado.DataNascimento;
                 }
 
-
                 if (usuarioAtualizado.IdTipoUsuario != 0)
                 {
                     usuarioAchado.IdTipoUsuario = usuarioAtualizado.IdTipoUsuario;
@@ -105,7 +104,6 @@ namespace senai_gp3_webApi.Repositories
                 {
                     usuarioAchado.Vantagens = usuarioAtualizado.Vantagens;
                 }
-            ;
 
                 ctx.Usuarios.Update(usuarioAchado);
 

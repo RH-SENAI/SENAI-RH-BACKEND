@@ -3,6 +3,7 @@ using senai_gp3_webApi.Domains;
 using senai_gp3_webApi.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -50,11 +51,14 @@ namespace senai_gp3_webApi.Controllers
         {
             try
             {
+                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+
                 if (novaDecisao == null)
                 {
                     return BadRequest("Objeto Vazio!");
                 } else
                 {
+                    novaDecisao.IdUsuario = idUsuario;
                     _decisaoRepository.CadastrarDecisao(novaDecisao);
                     return StatusCode(201);
                 }

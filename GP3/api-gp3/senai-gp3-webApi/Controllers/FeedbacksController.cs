@@ -3,6 +3,7 @@ using senai_gp3_webApi.Domains;
 using senai_gp3_webApi.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,6 +41,9 @@ namespace senai_gp3_webApi.Controllers
         [HttpPost("Cadastrar")]
         public IActionResult CadastrarFeedback(Feedback novoFeedback)
         {
+
+            int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+
             try
             {
                 if (novoFeedback == null)
@@ -47,7 +51,8 @@ namespace senai_gp3_webApi.Controllers
                     return BadRequest("Objeto não pode estar vazio!");
                 } else
                 {
-                    
+                    novoFeedback.IdUsuario = idUsuario;
+                    _feedBacksRepostory.CadastrarFb(novoFeedback);
                     return StatusCode(201);
                 }
             }
