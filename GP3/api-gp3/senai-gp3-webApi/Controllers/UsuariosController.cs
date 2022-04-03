@@ -89,11 +89,27 @@ namespace senai_gp3_webApi.Controllers
                 return BadRequest(exp);
             }
         }
-
-        // PUT api/<UsuariosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("Atualizar/{idUsuario}")]
+        public IActionResult AtualizarUsuario(int idUsuario, [FromBody] Usuario usuarioAtualizado)
         {
+            try
+            {
+
+
+                if (usuarioAtualizado == null)
+                {
+                    return BadRequest("Nenhum campo foi atualizado");
+                } else
+                {
+                    usuarioAtualizado.CaminhoFotoPerfil = "";
+                    return Ok(_usuarioRepository.AtualizarUsuario(idUsuario, usuarioAtualizado));
+
+                }
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
         }
 
         // DELETE api/<UsuariosController>/5

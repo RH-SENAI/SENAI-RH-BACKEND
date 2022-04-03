@@ -103,10 +103,12 @@ cpf CHAR(11) UNIQUE NOT NULL,
 saldoMoeda INT NOT NULL,
 trofeus INT NOT NULL,
 localizacaoUsuario VARCHAR(256) NOT NULL,
-caminhoFotoPerfil VARCHAR(256) UNIQUE NOT NULL,
+caminhoFotoPerfil VARCHAR(256) NOT NULL,
 salario MONEY NOT NULL
 );
 GO
+
+select * from USUARIO
 
 --ATIVIDADE
 CREATE TABLE ATIVIDADE(
@@ -210,3 +212,4 @@ numeroCupom VARCHAR(20) NOT NULL,
 mediaAvaliacaoDesconto DECIMAL(2,1) NOT NULL
 );
 GO
+ select * from FEEDBACK

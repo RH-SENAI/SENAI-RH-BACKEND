@@ -31,7 +31,7 @@ namespace senai_gp3_webApi
         /// </summary>
         /// <param name="idUsuario">Id do Usuario</param>
         /// <param name="usuarioAtualizado">Objeto de usuario</param>
-        void AtualizarUsuario(int idUsuario, Usuario usuarioAtualizado);
+        Usuario AtualizarUsuario(int idUsuario, Usuario usuarioAtualizado);
 
         /// <summary>
         /// Lista os usuarios
