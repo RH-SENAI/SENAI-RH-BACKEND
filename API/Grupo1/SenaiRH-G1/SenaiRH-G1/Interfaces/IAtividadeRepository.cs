@@ -15,7 +15,7 @@ namespace SenaiRH_G1.Interfaces
         List<Atividade> ListarTodas();
         List<MinhasAtividadesViewModel> ListarMinhas(int id);
         void AssociarAtividade(int idUsuario, int idAtividade);
-        void FinalizarAtividade(int idUsuario, int idAtividade, int idTipoUsuario);
+        void FinalizarAtividade(int idUsuario, int idAtividade);
         void ValidarAtividade(int idAtividade, int idUsuario);
     }
 }

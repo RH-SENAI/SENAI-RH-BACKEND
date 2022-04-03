@@ -82,21 +82,34 @@ namespace SenaiRH_G1.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Endpoint de listar atividades do usuário
+        /// </summary>
+        /// <param name="id">ID do usuário que terá suas atividades listadas</param>
+        /// <returns>Lista de atividades</returns>
         [HttpGet("MinhasAtividade/{id}")]
         public IActionResult ListarMinhasAtividades(int id)
         {
             try
             {
-                if (id > 0)
-                {
-                    
+                //Busca usuário pelo ID fornecido
+                Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
 
+                //Verifica se o usuário é válido
+                if (usuario != null)
+                {              
+                    //Caso seja, retorna status code 200 com a lista de atividade.
                     return Ok(_atividadeRepository.ListarMinhas(id));
                 }
-                return BadRequest(new
+                //Caso não seja
+                else
                 {
-                    Mensagem = "O ID inserido é inválido!"
-                });
+                    //Retorna status code 400 com mensagem de erro
+                    return BadRequest(new
+                    {
+                        Mensagem = "O ID inserido é inválido!"
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -105,25 +118,39 @@ namespace SenaiRH_G1.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint de associar um usuário à uma atividade
+        /// </summary>
+        /// <param name="idUsuario">ID do usuário que será associado</param>
+        /// <param name="idAtividade">ID da atividade que será associada</param>
+        /// <returns>Mensagem de confirmação</returns>
         [HttpPost("Associar/{idUsuario}")]
         public IActionResult AssociarAtividade(int idUsuario, int idAtividade)
         {
             try
             {
+                //Busca atividade pelo ID fornecido.
                 Atividade atividade = _context.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+
+                //Busca usuário fornecido
                 Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
 
+                //Verifica se atividade e usuário fornecidos são válidos
                 if (usuario != null && atividade != null)
                 {
+                    //Caso válido, chama método de AssociarAtividade
                     _atividadeRepository.AssociarAtividade(idUsuario, idAtividade);
 
+                    //Ao finalizar, retorna status code 200 com mensagem de sucesso.
                     return Ok(new
                     {
                         Mensagem = "O usuário foi associado a atividade!"
                     });
                 }
+                //Caso não seja válido
                 else
                 {
+                    //Retorna status code 400 com mensagem de erro
                     return BadRequest(new
                     {
                         Mensagem = "O ID usuário ou o ID Atividade são inválidos;"
@@ -137,41 +164,61 @@ namespace SenaiRH_G1.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint de finalizar uma atividade que está em produção
+        /// </summary>
+        /// <param name="idAtividade">ID da atividade que será finalizada</param>
+        /// <returns>Mensagem de confirmação</returns>
         [Authorize]
         [HttpPatch("FinalizarAtividade/{idAtividade}")]
         public IActionResult FinalizarAtividade(int idAtividade)
         {
             try
             {
+                //Busca o ID do usuário logado
                 int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+
+                //Busca atividade pelo ID fornecido
                 Atividade atividade = _context.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+
+                //Busca usuário pelo ID do usuário logado
                 Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+                //Busca associação entre o usuário e a atividade
                 Minhasatividade minhaAtividade = _context.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
 
+                //Verifica se atividade e usuário fornecidos são válidos
                 if (atividade != null && usuario != null)
                 {
+                    //Caso sejam válidos, verifica se associação entre funcionário e atividade é existente
                     if (minhaAtividade != null)
                     {
+                        //Caso seja existente, chama o método de Finalizar a atividade
+                        _atividadeRepository.FinalizarAtividade(idUsuario, idAtividade);
 
-                        _atividadeRepository.FinalizarAtividade(idUsuario, idAtividade, usuario.IdTipoUsuario);
-
-                    if (atividade.NecessarioValidar)
-                    {
-                        return Ok(new
+                        //Verifica se a atividade tem necessidade de validação
+                        if (atividade.NecessarioValidar)
                         {
-                            Mensagem = "Sua atividade está aguardando confirmação do administrador!"
-                        });
+                            //Caso a atividade tenha necessidade de validar, a atividade terá seu status alterado e retornará status code 200 com mensagem com essa informação.
+                            return Ok(new
+                            {
+                                Mensagem = "Sua atividade está aguardando confirmação do administrador!"
+                            });
+                        }
+                        //Caso não tenha necessidade de validação
+                        else
+                        {
+                            //Retornará status code 200 com uma mensagem com a confirmação da conclusão da atividade
+                            return Ok(new
+                            {
+                                Mensagem = "Sua atividade foi finalizada com sucesso!"
+                            });
+                        }
                     }
+                    //Caso não seja existente
                     else
                     {
-                        return Ok(new
-                        {
-                            Mensagem = "Sua atividade foi finalizada com sucesso!"
-                        });
-                    }
-                    }
-                    else
-                    {
+                        //Retorn status code 400 com mensagem de erro
                         return BadRequest(new
                         {
                             Mensagem = "O usuário não está associado a atividade"
@@ -179,8 +226,10 @@ namespace SenaiRH_G1.Controllers
                     }
 
                 }
+                //Caso não sejam válidos
                 else
                 {
+                    //Retorna status code 400 com mensagem de erro.
                     return BadRequest(new
                     {
                         Mensagem = "Os ID's informados são inválidos!"
@@ -196,36 +245,56 @@ namespace SenaiRH_G1.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint de validar uma atividade que foi finalizada pelo usuário, porém, precisa de validação.
+        /// </summary>
+        /// <param name="idAtividade">ID da atividae que será validada.</param>
+        /// <param name="idUsuario">ID do usuario que terá sua atividade validada.</param>
+        /// <returns>Mensagem de confirmação</returns>
         [Authorize(Roles = "2")]
         [HttpPatch("ValidarAtividade/{idAtividade}/{idUsuario}")]
         public IActionResult ValidarAtividade(int idAtividade, int idUsuario)
         {
             try
             {
+                //Busca associação entre a atividade e o usuário
                 Minhasatividade minhaAtividade = _context.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
+
+                // Busca atividade pelo ID fornecido
                 Atividade atividade = _context.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
+
+                //Busca usuário pelo ID fornecido
                 Usuario usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
 
+                //Verifica se atividade e usuário fornecidos são válidos
                 if(atividade != null && usuario != null)
                 {
+                    //Caso sejam, verifica se associação entre funcionário e atividade é existente
                     if (minhaAtividade != null)
                     {
+                        //Caso seja, chamará o método que valida atividade
                         _atividadeRepository.ValidarAtividade(idAtividade, idUsuario);
+
+                        //Ao finalizar, retornará status code 200 com mensagem de sucesso.
                         return Ok(new
                         {
                             Mensagem = "A atividade foi validada!"
                         });
                     }
+                    //Caso não seja
                     else
                     {
+                        //Retorna status code 400 com mensagem de erro.
                         return BadRequest(new
                         {
                             Mensagem = "O usuário não está associado a essa atividade!"
                         });
                     }
                 }
+                //Caso não sejam
                 else
                 {
+                    //Retornam status code 400 com mensagem de erro.
                     return BadRequest(new
                     {
                         Mensagem = "Os ID's inseridos são inválidos!"

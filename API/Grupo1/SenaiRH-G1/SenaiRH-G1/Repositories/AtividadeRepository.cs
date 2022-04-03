@@ -21,20 +21,32 @@ namespace SenaiRH_G1.Repositories
             ctx = appContext;
         }
 
+        /// <summary>
+        /// Método para associar um usuário à uma atividade
+        /// </summary>
+        /// <param name="idUsuario">ID do usuário que será associado à atividade</param>
+        /// <param name="idAtividade">ID da atividade a qual o usuário será associado</param>
         public void AssociarAtividade(int idUsuario, int idAtividade)
         {
+            //Criando nova associação de usuáro com atividade
             Minhasatividade novaAssociacao = new Minhasatividade();
+
+            //Buscando as entidades por meio dos ID's fornecidos
             Usuario usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
             Atividade atividade = ctx.Atividades.FirstOrDefault(u => u.IdAtividade == idAtividade);
             Cargo cargo = ctx.Cargos.FirstOrDefault(u => u.IdCargo == usuario.IdCargo);
 
+            //Verifica se a atividade e se o usuário fornecidos são validos 
             if (atividade != null && usuario != null)
             {
+                //Atribui os dados à nova associação
                 novaAssociacao.IdUsuario = idUsuario;
                 novaAssociacao.IdAtividade = idAtividade;
                 novaAssociacao.IdSetor = cargo.IdSetor;
+                //Situação da atividade passa a ser "Em produção"
                 novaAssociacao.IdSituacaoAtividade = 3;
 
+                //Cadastra nova associação no banco de dados
                 ctx.Minhasatividades.Add(novaAssociacao);
                 ctx.SaveChanges();
             }
@@ -53,9 +65,14 @@ namespace SenaiRH_G1.Repositories
             ctx.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Método para listar as atividades atribuídas ao usuário
+        /// </summary>
+        /// <param name="id">ID do usuário que terá suas atividades listadas</param>
+        /// <returns>Lista de atividades</returns>
         public List<MinhasAtividadesViewModel> ListarMinhas(int id)
         {
-
+            //Query que busca as atividades associadas ao usuário
             var listaMinhasAtividade = from atividades in ctx.Atividades
                                        join minhasAtividades in ctx.Minhasatividades on atividades.IdAtividade equals minhasAtividades.IdAtividade
                                        where minhasAtividades.IdUsuario == id
@@ -92,22 +109,32 @@ namespace SenaiRH_G1.Repositories
             ctx.SaveChangesAsync();
         }
 
-        
-        public void FinalizarAtividade(int idUsuario, int idAtividade, int idTipoUsuario)
+        /// <summary>
+        /// Método para finalizar uma atividade em curso
+        /// </summary>
+        /// <param name="idUsuario">ID do usuário que terá sua atividade finalizada</param>
+        /// <param name="idAtividade">ID da atividade que será finalizada</param>
+        public void FinalizarAtividade(int idUsuario, int idAtividade)
         {
+            //Buscando as entidades por meio dos ID's fornecidos
             Minhasatividade minhaAtividade = ctx.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
             Atividade atividade = ctx.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
             Usuario usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+            //Verificação se existe a relação entre usuário e atividade
             if (minhaAtividade != null)
             {
+                //Verifica se a atividade necessita de validação para ser finalizada
                 if(atividade.NecessarioValidar)
                 {
+                    //Caso necessário, a situação da atividade será alterada para "Aguardando validação"
                     minhaAtividade.IdSituacaoAtividade = 2;
                     ctx.Minhasatividades.Update(minhaAtividade);
                     ctx.SaveChanges();
                 }
                 else
                 {
+                    //Caso contrário, a situação da atividade será alterada para "Finalizada" e as recompensas da atividade serão atribuídas ao usuário
                     minhaAtividade.IdSituacaoAtividade = 1;
                     usuario.SaldoMoeda = usuario.SaldoMoeda + atividade.RecompensaMoeda;
                     usuario.Trofeus = usuario.Trofeus + atividade.RecompensaTrofeu;
@@ -120,17 +147,25 @@ namespace SenaiRH_G1.Repositories
             
         }
 
-        
+        /// <summary>
+        /// Método para validar uma atividade que está aguardando validação do administrador
+        /// </summary>
+        /// <param name="idAtividade">ID da atividade que será validada</param>
+        /// <param name="idUsuario">ID do usuário que terá sua atividade validada</param>
         public void ValidarAtividade(int idAtividade, int idUsuario)
         {
+            //Buscando as entidades por meio dos ID's fornecidos
             Minhasatividade minhaAtividade = ctx.Minhasatividades.FirstOrDefault(a => a.IdAtividade == idAtividade && a.IdUsuario == idUsuario);
             Atividade atividade = ctx.Atividades.FirstOrDefault(a => a.IdAtividade == idAtividade);
             Usuario usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
 
+            //Verificação se existe a relação entre usuário e atividade
             if (minhaAtividade != null)
             {
+                //Verifica se a situação da atividade é igual à "Aguardando validação"
                 if(minhaAtividade.IdSituacaoAtividade == 2)
                 {
+                    //Caso seja, a atividade terá sua situação trocada para "Finalizada" e as recompensas serão atribuídas ao usuário.
                     minhaAtividade.IdSituacaoAtividade = 1;
                     usuario.SaldoMoeda = usuario.SaldoMoeda + atividade.RecompensaMoeda;
                     usuario.Trofeus = usuario.Trofeus + atividade.RecompensaTrofeu;
