@@ -29,13 +29,14 @@ namespace SenaiRH_G1.Controllers
         }
 
         
-
+        [Authorize(Roles = "2")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Atividade>>> GetAtividades()
         {
             return await _context.Atividades.ToListAsync();
         }
 
+        [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult PostAtividade(Atividade atividade)
         {
@@ -67,6 +68,7 @@ namespace SenaiRH_G1.Controllers
 
         }
 
+        [Authorize(Roles ="2")] 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEquipamento(int id)
         {
@@ -87,6 +89,7 @@ namespace SenaiRH_G1.Controllers
         /// </summary>
         /// <param name="id">ID do usuário que terá suas atividades listadas</param>
         /// <returns>Lista de atividades</returns>
+        [Authorize]
         [HttpGet("MinhasAtividade/{id}")]
         public IActionResult ListarMinhasAtividades(int id)
         {
@@ -124,6 +127,7 @@ namespace SenaiRH_G1.Controllers
         /// <param name="idUsuario">ID do usuário que será associado</param>
         /// <param name="idAtividade">ID da atividade que será associada</param>
         /// <returns>Mensagem de confirmação</returns>
+        [Authorize]
         [HttpPost("Associar/{idUsuario}")]
         public IActionResult AssociarAtividade(int idUsuario, int idAtividade)
         {
