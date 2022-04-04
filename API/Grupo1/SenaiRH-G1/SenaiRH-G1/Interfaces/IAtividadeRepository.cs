@@ -14,6 +14,8 @@ namespace SenaiRH_G1.Interfaces
         Atividade BuscarPorId(int id);
         List<Atividade> ListarTodas();
         List<MinhasAtividadesViewModel> ListarMinhas(int id);
+        List<MinhasAtividadesViewModel> ListaValidar();
+
         void AssociarAtividade(int idUsuario, int idAtividade);
     }
 }

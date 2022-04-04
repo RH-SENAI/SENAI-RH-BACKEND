@@ -72,6 +72,32 @@ namespace SenaiRH_G1.Repositories
             return ctx.Atividades.ToList();
         }
 
+        public List<MinhasAtividadesViewModel> ListaValidar()
+        {
+            var listaMinhasAtividade = from atividades in ctx.Atividades
+                                       join minhasAtividades in ctx.Minhasatividades on atividades.IdAtividade equals minhasAtividades.IdAtividade
+                                       where minhasAtividades.IdSituacaoAtividade == 2
+                                       select new MinhasAtividadesViewModel
+                                       {
+                                           IdAtividade = atividades.IdAtividade,
+                                           NomeAtividade = atividades.NomeAtividade,
+                                           DataInicio = atividades.DataInicio,
+                                           DataCriacao = atividades.DataCriacao,
+                                           DataConclusao = atividades.DataConclusao,
+                                           DescricaoAtividade = atividades.DescricaoAtividade,
+                                           RecompensaMoeda = atividades.RecompensaMoeda,
+                                           RecompensaTrofeu = atividades.RecompensaTrofeu,
+                                           NecessarioValidar = atividades.NecessarioValidar,
+                                           IdMinhasAtividades = minhasAtividades.IdMinhasAtividades,
+                                           IdSetor = minhasAtividades.IdSetor,
+                                           IdUsuario = minhasAtividades.IdUsuario,
+                                           IdSituacaoAtividade = minhasAtividades.IdSituacaoAtividade
+                                       };
+
+
+            return listaMinhasAtividade.ToList();
+        }
+
         public void RemoverAtividade(Atividade atividade)
         {
             ctx.Atividades.Remove(atividade);

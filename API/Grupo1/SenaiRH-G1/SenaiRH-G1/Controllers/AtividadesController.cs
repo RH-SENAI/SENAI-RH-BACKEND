@@ -39,7 +39,7 @@ namespace SenaiRH_G1.Controllers
             try
             {
 
-                if (atividade.NomeAtividade == null || atividade.DataInicio < DateTime.Now || atividade.DataInicio < DateTime.Now)
+                if (atividade.NomeAtividade == null || atividade.DescricaoAtividade == null)
                 {
                     return BadRequest(new
                     {
@@ -99,6 +99,20 @@ namespace SenaiRH_G1.Controllers
             {
 
                 return BadRequest(ex);  
+            }
+        }
+
+        [HttpGet("ListaValidar")]
+        public IActionResult ListaValidar()
+        {
+            try
+            {
+                return Ok(_usuarioRepository.ListaValidar());
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
             }
         }
     }
