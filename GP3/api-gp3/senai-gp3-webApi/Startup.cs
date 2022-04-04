@@ -96,10 +96,10 @@ namespace senai_gp3_webApi
                     ClockSkew = TimeSpan.FromHours(1),
 
                     //nome de emissor
-                    ValidIssuer = "nota10.webApi",
+                    ValidIssuer = "senai-gp3-webApi",
 
                     //nome do destinatário
-                    ValidAudience = "nota10.webApi"
+                    ValidAudience = "senai-gp3-webApi"
                 }
                 );
 
