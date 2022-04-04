@@ -27,7 +27,15 @@ namespace senai_gp3_webApi.Controllers
         [HttpGet("Listar")]
         public IActionResult ListarFeedbacks()
         {
-            return Ok(_feedBacksRepostory.ListarFb());
+            try
+            {
+                return Ok(_feedBacksRepostory.ListarFb());
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
+            ;
         }
 
         // GET api/<FeedbacksController>/5
