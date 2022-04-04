@@ -113,9 +113,26 @@ namespace senai_gp3_webApi.Controllers
         }
 
         // DELETE api/<UsuariosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("Deletar/{id}")]
+        public IActionResult DeletarUsuario(int id)
         {
+            try
+            {
+                if (id == 0)
+                {
+                    return BadRequest("O id passado não pode ser 0");
+                }
+                else
+                {
+
+                    _usuarioRepository.DeletarUsuario(id);
+                    return NoContent();
+                }
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
         }
     }
 }
