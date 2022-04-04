@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SenaiRH_G2.Domains;
 using SenaiRH_G2.Interfaces;
+using SenaiRH_G2.Utils;
+using SenaiRH_G2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,37 +57,72 @@ namespace SenaiRH_G2.Controllers
         }
 
 
-        [HttpPatch("Deletar/{id:int}")]
+        [HttpDelete("Deletar/{id}")]
         public IActionResult ExcluirCurso(int id)
         {
             try
             {
-                if (id <= 0)
+                if (id != 0)
                 {
-                    return BadRequest(new
-                    {
-                        Mensagem = "Escreva um ID válido"
-                    });
+                    _cursoRepository.ExcluirCurso(id);
+                    return StatusCode(204);
                 }
 
-                if (_cursoRepository.BuscarPorId(id) == null)
-                {
-                    return BadRequest(new
-                    {
-                        Mensagem = "Não há nenhuma Curso"
-                    });
-                }
-                _cursoRepository.ExcluirCurso(id);
-
-                return StatusCode(204, new
-                {
-                    Mensagem = "Curso foi cancelada"
-                });
+                return NotFound();
             }
-            catch (Exception ex)
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
+
+        }
+
+
+        [HttpPost("Cadastrar")]
+        public IActionResult CadastrarCurso([FromForm] CursoCadastroViewModel novoCurso, IFormFile fotoCurso)
+        {
+
+            try
+            {
+                if (fotoCurso == null)
+                {
+                    novoCurso.CaminhoImagemCurso = "imagem-padrao.png";
+                }
+                else
+                {
+                    #region Upload da Imagem com extensões permitidas apenas
+                    string[] extensoesPermitidas = { "jpg", "png", "jpeg" };
+                    string uploadResultado = Upload.UploadFile(fotoCurso, extensoesPermitidas);
+
+                    if (uploadResultado == "")
+                    {
+                        return BadRequest("Arquivo não encontrado !");
+                    }
+                    if (uploadResultado == "Extensão não permitida")
+                    {
+                        return BadRequest("Extensão do arquivo não permitida");
+                    }
+
+                    novoCurso.CaminhoImagemCurso = uploadResultado;
+                    #endregion
+                }
+
+
+
+                if (novoCurso == null)
+                {
+                    return BadRequest("Todos os campos do usuario devem ser preenchidos !");
+                }
+                else
+                {
+                    _cursoRepository.CadastrarCurso(novoCurso);
+                    return StatusCode(201);
+                }
+            }
+            catch (Exception exp)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(exp);
             }
 
         }

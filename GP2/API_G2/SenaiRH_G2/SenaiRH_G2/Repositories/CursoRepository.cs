@@ -1,6 +1,7 @@
 ﻿using SenaiRH_G2.Contexts;
 using SenaiRH_G2.Domains;
 using SenaiRH_G2.Interfaces;
+using SenaiRH_G2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,37 +19,36 @@ namespace SenaiRH_G2.Repositories
             return ctx.Cursos.FirstOrDefault(c => c.IdCurso == id);
         }
 
-        public void CadastrarCurso(Curso novoCurso)
+        public void CadastrarCurso(CursoCadastroViewModel novoCurso)
         {
-            throw new NotImplementedException();
+
+            Curso curso = new Curso()
+            {
+                IdEmpresa = novoCurso.IdEmpresa,
+                NomeCurso = novoCurso.NomeCurso,
+                DescricaoCurso = novoCurso.DescricaoCurso,
+                SiteCurso = novoCurso.SiteCurso,
+                ModalidadeCurso = novoCurso.ModalidadeCurso,
+                CaminhoImagemCurso = novoCurso.CaminhoImagemCurso,
+                CargaHoraria = novoCurso.CargaHoraria,
+                DataFinalizacao = novoCurso.DataFinalizacao,
+                MediaAvaliacaoCurso = novoCurso.MediaAvaliacaoCurso
+            };
+
+            ctx.Cursos.Add(curso);
+            ctx.SaveChanges();
+            
         }
 
         public void ExcluirCurso(int id)
         {
             Curso buscarPorId = ctx.Cursos.FirstOrDefault(c => c.IdCurso == id);
-            if(buscarPorId == null)
-            {
-                throw new Exception("Curso não Existe");
-            }
-
+            ctx.Comentariocursos.Remove(buscarPorId);
+            ctx.Cursofavoritos.Remove(buscarPorId);
             ctx.Cursos.Remove(buscarPorId);
             ctx.SaveChanges();
         }
 
-        public List<Curso> ListarComentarioCurso(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Curso> ListarCursoFavorito(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Curso> ListarRegistroCurso(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Curso> ListarTodos()
         {
