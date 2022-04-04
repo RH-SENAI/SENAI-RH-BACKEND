@@ -110,6 +110,8 @@ namespace senai_gp3_webApi
             services.AddTransient<IDecisaoRepository, DecisaoRepository>();
             services.AddTransient<IFeedbackRepository, FeedBackRepository>();
             services.AddTransient<ICargoRepository, CargoRepository>();
+            services.AddTransient<IUnidadesenaiRepository, UnidadesenaiRepository>();
+
 
         }
 

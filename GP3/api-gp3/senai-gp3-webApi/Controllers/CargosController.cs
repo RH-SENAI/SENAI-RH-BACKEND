@@ -19,9 +19,10 @@ namespace senai_gp3_webApi.Controllers
 
         [HttpGet("Listar")]
         public IActionResult ListarCargos()
-        {   try
+        {
+            try
             {
-               return Ok(_cargoRepository.ListarCargos());
+             return Ok(_cargoRepository.ListarCargos());
             }
             catch (Exception execp)
             {
