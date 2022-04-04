@@ -19,7 +19,18 @@ namespace senai_gp3_webApi.Controllers
         }
 
         // GET: api/<UnidadesenaisController>
-
+        [HttpGet("Listar")]
+        public IActionResult ListarUnidadesSenai()
+        {
+            try
+            {
+                return Ok(_unidadeSenaiRepository.ListarUniSenai());
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            };
+        }
 
         // GET api/<UnidadesenaisController>/5
         [HttpGet("{id}")]
