@@ -6,6 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <Compile Remove="StaticFiles\NovaPasta\**" />
+    <Content Remove="StaticFiles\NovaPasta\**" />
+    <EmbeddedResource Remove="StaticFiles\NovaPasta\**" />
+    <None Remove="StaticFiles\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="StaticFiles\Images\Class.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="StaticFiles\Images\" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.15" />
