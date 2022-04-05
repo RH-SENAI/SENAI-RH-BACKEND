@@ -4,6 +4,36 @@
         <name>SenaiRH-G1</name>
     </assembly>
     <members>
+        <member name="M:SenaiRH_G1.Controllers.AtividadesController.ListarMinhasAtividades(System.Int32)">
+            <summary>
+            Endpoint de listar atividades do usuário
+            </summary>
+            <param name="id">ID do usuário que terá suas atividades listadas</param>
+            <returns>Lista de atividades</returns>
+        </member>
+        <member name="M:SenaiRH_G1.Controllers.AtividadesController.AssociarAtividade(System.Int32,System.Int32)">
+            <summary>
+            Endpoint de associar um usuário à uma atividade
+            </summary>
+            <param name="idUsuario">ID do usuário que será associado</param>
+            <param name="idAtividade">ID da atividade que será associada</param>
+            <returns>Mensagem de confirmação</returns>
+        </member>
+        <member name="M:SenaiRH_G1.Controllers.AtividadesController.FinalizarAtividade(System.Int32)">
+            <summary>
+            Endpoint de finalizar uma atividade que está em produção
+            </summary>
+            <param name="idAtividade">ID da atividade que será finalizada</param>
+            <returns>Mensagem de confirmação</returns>
+        </member>
+        <member name="M:SenaiRH_G1.Controllers.AtividadesController.ValidarAtividade(System.Int32,System.Int32)">
+            <summary>
+            Endpoint de validar uma atividade que foi finalizada pelo usuário, porém, precisa de validação.
+            </summary>
+            <param name="idAtividade">ID da atividae que será validada.</param>
+            <param name="idUsuario">ID do usuario que terá sua atividade validada.</param>
+            <returns>Mensagem de confirmação</returns>
+        </member>
         <member name="M:SenaiRH_G1.Controllers.LoginController.Login(SenaiRH_G1.ViewModel.LoginViewModel)">
             <summary>
             Valida o Usuário
