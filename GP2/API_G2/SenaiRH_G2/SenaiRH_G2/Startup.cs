@@ -1,13 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+<<<<<<< HEAD
 using SenaiRH_G2.Interfaces;
 using SenaiRH_G2.Repositores;
+=======
+using SenaiRH_G2.Contexts;
+using SenaiRH_G2.Interfaces;
+using SenaiRH_G2.Repositories;
+>>>>>>> 8236dcd680023518cf07348a074dc0e0a50957f0
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -73,8 +80,10 @@ namespace SenaiRH_G2
                             ValidIssuer = "SENAIRH.webAPI",
                             ValidAudience = "SENAIRH.webAPI"
                         };
+
                     });
 
+<<<<<<< HEAD
 
 
 
@@ -82,6 +91,10 @@ namespace SenaiRH_G2
             services.AddTransient<IComentarioCursoRepository, ComentarioCursoRepository>();
             services.AddTransient<IComentarioDescontoRepository, ComentarioDescontoRepository>();
 
+=======
+            services.AddTransient<DbContext, SenaiRHContext>();
+            services.AddTransient<ICursoRepository, CursoRepository>();
+>>>>>>> 8236dcd680023518cf07348a074dc0e0a50957f0
         }
 
 
