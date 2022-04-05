@@ -72,6 +72,10 @@ namespace SenaiRH_G2.Contexts
                     .HasColumnType("date")
                     .HasColumnName("dataConclusao");
 
+                entity.Property(e => e.DataCriacao)
+                    .HasColumnType("datetime")
+                    .HasColumnName("dataCriacao");
+
                 entity.Property(e => e.DataInicio)
                     .HasColumnType("date")
                     .HasColumnName("dataInicio");
