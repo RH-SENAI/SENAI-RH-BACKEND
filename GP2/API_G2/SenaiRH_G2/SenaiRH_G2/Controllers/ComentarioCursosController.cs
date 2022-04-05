@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SenaiRH_G2.Domains;
 using SenaiRH_G2.Interfaces;
-using SenaiRH_G2.Repositores;
+using SenaiRH_G2.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

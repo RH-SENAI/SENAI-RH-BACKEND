@@ -7,14 +7,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-<<<<<<< HEAD
-using SenaiRH_G2.Interfaces;
-using SenaiRH_G2.Repositores;
-=======
 using SenaiRH_G2.Contexts;
 using SenaiRH_G2.Interfaces;
 using SenaiRH_G2.Repositories;
->>>>>>> 8236dcd680023518cf07348a074dc0e0a50957f0
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -83,18 +78,11 @@ namespace SenaiRH_G2
 
                     });
 
-<<<<<<< HEAD
-
-
-
-
             services.AddTransient<IComentarioCursoRepository, ComentarioCursoRepository>();
             services.AddTransient<IComentarioDescontoRepository, ComentarioDescontoRepository>();
-
-=======
-            services.AddTransient<DbContext, SenaiRHContext>();
+            services.AddTransient<DbContext, senaiRhContext>();
             services.AddTransient<ICursoRepository, CursoRepository>();
->>>>>>> 8236dcd680023518cf07348a074dc0e0a50957f0
+
         }
 
 

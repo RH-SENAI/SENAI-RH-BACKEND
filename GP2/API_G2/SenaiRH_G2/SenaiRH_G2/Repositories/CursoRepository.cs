@@ -12,7 +12,7 @@ namespace SenaiRH_G2.Repositories
     public class CursoRepository : ICursoRepository
     {
 
-        SenaiRHContext ctx = new SenaiRHContext();
+        senaiRhContext ctx = new senaiRhContext();
 
         public Curso BuscarPorId(int id)
         {
@@ -43,7 +43,6 @@ namespace SenaiRH_G2.Repositories
         public void ExcluirCurso(int id)
         {
             Curso buscarPorId = ctx.Cursos.FirstOrDefault(c => c.IdCurso == id);
-            ctx.Cursos.Comentariocursos.Remove(buscarPorId);
             ctx.Cursos.Remove(buscarPorId);
             ctx.SaveChanges();
         }

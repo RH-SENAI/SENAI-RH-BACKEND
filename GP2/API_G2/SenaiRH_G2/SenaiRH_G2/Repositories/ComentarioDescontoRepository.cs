@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SenaiRH_G2.Repositores
+namespace SenaiRH_G2.Repositories
 {
     public class ComentarioDescontoRepository : IComentarioDescontoRepository
     {
