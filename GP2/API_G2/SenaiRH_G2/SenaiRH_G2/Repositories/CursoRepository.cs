@@ -43,8 +43,7 @@ namespace SenaiRH_G2.Repositories
         public void ExcluirCurso(int id)
         {
             Curso buscarPorId = ctx.Cursos.FirstOrDefault(c => c.IdCurso == id);
-            ctx.Comentariocursos.Remove(buscarPorId);
-            ctx.Cursofavoritos.Remove(buscarPorId);
+            ctx.Cursos.Comentariocursos.Remove(buscarPorId);
             ctx.Cursos.Remove(buscarPorId);
             ctx.SaveChanges();
         }
