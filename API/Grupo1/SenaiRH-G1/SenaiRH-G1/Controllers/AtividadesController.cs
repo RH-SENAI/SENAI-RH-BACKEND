@@ -255,7 +255,7 @@ namespace SenaiRH_G1.Controllers
         /// <param name="idAtividade">ID da atividae que será validada.</param>
         /// <param name="idUsuario">ID do usuario que terá sua atividade validada.</param>
         /// <returns>Mensagem de confirmação</returns>
-        [Authorize(Roles = "2")]
+        //[Authorize(Roles = "2")]
         [HttpPatch("ValidarAtividade/{idAtividade}/{idUsuario}")]
         public IActionResult ValidarAtividade(int idAtividade, int idUsuario)
         {
@@ -310,6 +310,20 @@ namespace SenaiRH_G1.Controllers
 
                 return BadRequest(ex);
             }
+
         }
+            [HttpGet("ListaValidar")]
+            public IActionResult ListaValidar()
+            {
+                try
+                {
+                    return Ok(_atividadeRepository.ListaValidar());
+                }
+                catch (Exception ex)
+                {
+
+                    return BadRequest(ex);
+                }
+            }
     }
 }
