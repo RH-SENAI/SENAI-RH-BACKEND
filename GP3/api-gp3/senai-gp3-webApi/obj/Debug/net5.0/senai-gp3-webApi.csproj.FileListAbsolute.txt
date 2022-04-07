@@ -520,8 +520,11 @@ C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webA
 C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\obj\Debug\net5.0\senai-gp3-webApi.pdb
 C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\obj\Debug\net5.0\senai-gp3-webApi.genruntimeconfig.cache
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\obj\Debug\net5.0\senai-gp3-webApi.csproj.CopyComplete
 =======
+=======
+>>>>>>> 5bdc49b269525a2138aa419a4841035f975291d9
 C:\Users\33848821800\Desktop\TCC\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\33848821800\Desktop\TCC\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\appsettings.json
 C:\Users\33848821800\Desktop\TCC\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\.filenesting.json
@@ -673,4 +676,7 @@ C:\Users\33848821800\Desktop\TCC\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\o
 C:\Users\33848821800\Desktop\TCC\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\obj\Debug\net5.0\senai-gp3-webApi.xml
 C:\Users\33848821800\Desktop\TCC\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\obj\Debug\net5.0\senai-gp3-webApi.pdb
 C:\Users\33848821800\Desktop\TCC\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\obj\Debug\net5.0\senai-gp3-webApi.genruntimeconfig.cache
+<<<<<<< HEAD
+>>>>>>> 5bdc49b269525a2138aa419a4841035f975291d9
+=======
 >>>>>>> 5bdc49b269525a2138aa419a4841035f975291d9
