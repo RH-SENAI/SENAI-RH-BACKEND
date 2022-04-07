@@ -46,7 +46,27 @@ namespace senai_gp3_webApi.Repositories
 
         public List<Feedback> ListarFb()
         {
-            return ctx.Feedbacks.ToList();
+            return ctx.Feedbacks
+                .Select( f => new Feedback()
+                {
+                    IdFeedBack = f.IdFeedBack,
+                    IdDecisao = f.IdDecisao,
+                    IdUsuario = f.IdUsuario,
+                    ComentarioFeedBack = f.ComentarioFeedBack,
+                    NotaDecisao = f.NotaDecisao,
+                    DataPublicacao = f.DataPublicacao,
+                    ValorMoedas = f.ValorMoedas,
+                    IdDecisaoNavigation = new Decisao() 
+                    {  
+                        DescricaoDecisao = f.IdDecisaoNavigation.DescricaoDecisao
+                    },
+                    IdUsuarioNavigation = new Usuario ()
+                    {
+                        Nome = f.IdUsuarioNavigation.Nome
+                    }
+                }
+                )
+                .ToList();
         }
 
         public Feedback ListarFbPorId(int idFeedback)
