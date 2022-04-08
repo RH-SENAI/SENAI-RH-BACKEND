@@ -9336,19 +9336,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\33848821800\\.nuget\\packages\\": {}
+    "C:\\Users\\47026404881.INFOSCS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\33848821800\\Desktop\\TCC\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
+      "projectUniqueName": "C:\\Users\\47026404881.INFOSCS\\Documents\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
       "projectName": "senai-gp3-webApi",
-      "projectPath": "C:\\Users\\33848821800\\Desktop\\TCC\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
-      "packagesPath": "C:\\Users\\33848821800\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\33848821800\\Desktop\\TCC\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\obj\\",
+      "projectPath": "C:\\Users\\47026404881.INFOSCS\\Documents\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
+      "packagesPath": "C:\\Users\\47026404881.INFOSCS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\47026404881.INFOSCS\\Documents\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\33848821800\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\47026404881.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9439,7 +9439,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
