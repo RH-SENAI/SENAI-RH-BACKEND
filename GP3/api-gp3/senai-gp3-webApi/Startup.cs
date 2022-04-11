@@ -96,10 +96,10 @@ namespace senai_gp3_webApi
                     ClockSkew = TimeSpan.FromHours(1),
 
                     //nome de emissor
-                    ValidIssuer = "nota10.webApi",
+                    ValidIssuer = "senai-gp3-webApi",
 
                     //nome do destinatário
-                    ValidAudience = "nota10.webApi"
+                    ValidAudience = "senai-gp3-webApi"
                 }
                 );
 
@@ -109,6 +109,12 @@ namespace senai_gp3_webApi
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IDecisaoRepository, DecisaoRepository>();
             services.AddTransient<IFeedbackRepository, FeedBackRepository>();
+            services.AddTransient<ICargoRepository, CargoRepository>();
+            services.AddTransient<IUnidadesenaiRepository, UnidadesenaiRepository>();
+            services.AddTransient<IIdTipoUsuarioRepository, IdTipoUsuarioRepository>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

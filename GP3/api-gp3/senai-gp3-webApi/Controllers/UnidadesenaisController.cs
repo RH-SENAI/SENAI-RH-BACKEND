@@ -2,63 +2,56 @@
 using senai_gp3_webApi.Domains;
 using senai_gp3_webApi.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace senai_gp3_webApi.Controllers
 {
     [Route("api/[controller]")]
-    [Produces("application/json")]
     [ApiController]
-    public class FeedbacksController : ControllerBase
+    public class UnidadesenaisController : ControllerBase
     {
-        private readonly IFeedbackRepository _feedBacksRepostory;
+        private readonly IUnidadesenaiRepository _unidadeSenaiRepository;
 
-        public FeedbacksController(IFeedbackRepository repo)
+        public UnidadesenaisController(IUnidadesenaiRepository repo)
         {
-            _feedBacksRepostory = repo;
+            _unidadeSenaiRepository = repo;   
         }
 
-        // GET: api/<FeedbacksController>
+        // GET: api/<UnidadesenaisController>
         [HttpGet("Listar")]
-        public IActionResult ListarFeedbacks()
+        public IActionResult ListarUnidadesSenai()
         {
             try
             {
-                return Ok(_feedBacksRepostory.ListarFb());
+                return Ok(_unidadeSenaiRepository.ListarUniSenai());
             }
             catch (Exception execp)
             {
                 return BadRequest(execp);
-            }
-            ;
+            };
         }
 
-        // GET api/<FeedbacksController>/5
+        // GET api/<UnidadesenaisController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<FeedbacksController>
+        // POST api/<UnidadesenaisController>
         [HttpPost("Cadastrar")]
-        public IActionResult CadastrarFeedback(Feedback novoFeedback)
+        public IActionResult CadastrarUnidade(Unidadesenai novaUnidadesenai)
         {
             try
             {
-                int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                if (novoFeedback == null)
+                if (novaUnidadesenai == null)
                 {
                     return BadRequest("Objeto não pode estar vazio!");
-                } else
+                }
+                else
                 {
-                    novoFeedback.IdUsuario = idUsuario;
-                    _feedBacksRepostory.CadastrarFb(novoFeedback);
+                    _unidadeSenaiRepository.CadastrarUniSenai(novaUnidadesenai);
                     return StatusCode(201);
                 }
             }
@@ -68,13 +61,13 @@ namespace senai_gp3_webApi.Controllers
             }
         }
 
-        // PUT api/<FeedbacksController>/5
+        // PUT api/<UnidadesenaisController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<FeedbacksController>/5
+        // DELETE api/<UnidadesenaisController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

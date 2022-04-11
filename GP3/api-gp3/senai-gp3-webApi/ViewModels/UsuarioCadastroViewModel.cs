@@ -5,7 +5,6 @@ namespace senai_gp3_webApi.ViewModels
 {
     public class UsuarioCadastroViewModel
     {
-        public int IdUsuario { get; set; }
 
         [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
         public byte IdCargo { get; set; }

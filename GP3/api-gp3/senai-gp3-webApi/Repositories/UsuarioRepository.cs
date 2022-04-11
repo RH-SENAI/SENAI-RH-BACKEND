@@ -156,7 +156,11 @@ namespace senai_gp3_webApi.Repositories
 
         public void DeletarUsuario(int idUsuario)
         {
-            throw new System.NotImplementedException();
+            var usuarioAchado = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+            ctx.Usuarios.Remove(usuarioAchado);
+
+            ctx.SaveChanges();
         }
 
         public string ListarSalario(int idUsuario)
@@ -194,6 +198,10 @@ namespace senai_gp3_webApi.Repositories
                     {
                         IdTipoUsuario = u.IdTipoUsuarioNavigation.IdTipoUsuario,
                         NomeTipoUsuario = u.IdTipoUsuarioNavigation.NomeTipoUsuario
+                    },
+                    IdUnidadeSenaiNavigation = new Unidadesenai ()
+                    {
+                        NomeUnidadeSenai = u.IdUnidadeSenaiNavigation.NomeUnidadeSenai
                     }
 
                 }).

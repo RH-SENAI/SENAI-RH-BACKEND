@@ -59,10 +59,10 @@ namespace senai_gp3_webApi.Controllers
                     var MeuToken = new JwtSecurityToken(
 
                         //emissor
-                        issuer: "SpMedicalGroup.webApi",
+                        issuer: "senai-gp3-webApi",
 
                         //destinatário
-                        audience: "SpMedicalGroup.webApi",
+                        audience: "senai-gp3-webApi",
 
                         //claims/informações
                         claims: minhasClaims,
