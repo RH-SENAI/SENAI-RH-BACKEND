@@ -14,12 +14,32 @@ namespace senai_gp3_webApi.Interfaces
         /// <returns>Uma lista com as decisoes</returns>
         List<Unidadesenai> ListarUniSenai();
 
-
+        /// <summary>
+        /// Deleta uma unidade Senai
+        /// </summary>
+        /// <param name="idUnidadeSenai">Id da unidade que será deletada</param>
+        void DeletarUniSenai(int idUnidadeSenai);
 
         /// <summary>
         /// Cadastra uma unidade do senai
         /// </summary>
         /// <param name="unidadesenai">unidade que será cadastrada</param>
         void CadastrarUniSenai(Unidadesenai unidadesenai);
+
+
+        /// <summary>
+        /// Atualiza os dados de uma determinadade unidade do senai
+        /// </summary>
+        /// <param name="idUniSenai">Id da unidade que será atualiza</param>
+        /// <param name="UniSenaiAtualizada">Objeto com os atributos da unidade que será atualizada</param>
+        /// <returns>A Unidade Senai atualizada</returns>
+        Unidadesenai AtualizarUniSenaiPorId(int idUniSenai, Unidadesenai UniSenaiAtualizada);
+
+        /// <summary>
+        /// Lista uma unidade específica pelo seu id
+        /// </summary>
+        /// <param name="idUniSenai">Id correspondente com a unidade senai desejada</param>
+        /// <returns>A unidade senai desejada</returns>
+        Unidadesenai ListarUniSenaiPorId(int idUniSenai);
     }
 }

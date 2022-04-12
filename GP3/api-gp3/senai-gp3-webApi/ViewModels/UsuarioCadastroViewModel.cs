@@ -6,25 +6,25 @@ namespace senai_gp3_webApi.ViewModels
     public class UsuarioCadastroViewModel
     {
 
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "IdCargo deve ser preenchido!")]
         public byte IdCargo { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "IdUnidadeSenai deve ser preenchido!")]
         public int IdUnidadeSenai { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "IdTipoUsuario deve ser preenchido!")]
         public byte IdTipoUsuario { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "Nome deve ser preenchido!")]
         public string Nome { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "O Email deve ser preenchido!")]
         public string Email { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "Senha deve ser preenchido!")]
         public string Senha { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "Data deve ser preenchida!")]
         [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
         
@@ -32,7 +32,7 @@ namespace senai_gp3_webApi.ViewModels
         
         public decimal NivelSatisfacao { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
+        [Required(ErrorMessage = "CPF deve ser preenchido!")]
         public string Cpf { get; set; }
         
         public int SaldoMoeda { get; set; }
@@ -43,7 +43,5 @@ namespace senai_gp3_webApi.ViewModels
         
         public string CaminhoFotoPerfil { get; set; }
         
-        [Required(ErrorMessage = "Todos os campos devem ser preenchidos !")]
-        public decimal Salario { get; set; }
     }
 }

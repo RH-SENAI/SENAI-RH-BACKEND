@@ -32,7 +32,7 @@ namespace senai_gp3_webApi.Controllers
             try
             {
                 //buscando um usuário
-                Usuario usuarioBuscado = _usuarioRepository.Login(login.Email, login.Senha);
+                Usuario usuarioBuscado = _usuarioRepository.Login(login.Cpf, login.Senha);
 
                 if (usuarioBuscado != null)
                 {

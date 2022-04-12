@@ -38,11 +38,23 @@ namespace senai_gp3_webApi.Controllers
             }
         }
 
-        // GET api/<UsuariosController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        
+        [HttpGet("Listar/{idUsuario}")]
+        public IActionResult ListaUsuarioPorId(int idUsuario)
         {
-            return "value";
+            try
+            {
+                if (idUsuario != 0)
+                {
+                    return BadRequest("O id do Usuário não pode ser 0 !");
+                }
+
+                return Ok(_usuarioRepository.ListarUsuarioPorId(idUsuario));
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
         }
 
         [HttpPost("Cadastrar")]
@@ -90,7 +102,7 @@ namespace senai_gp3_webApi.Controllers
             }
         }
         [HttpPut("Atualizar/{idUsuario}")]
-        public IActionResult AtualizarUsuario(int idUsuario, [FromBody] Usuario usuarioAtualizado)
+        public IActionResult AtualizarUsuario(int idUsuario,  Usuario usuarioAtualizado)
         {
             try
             {

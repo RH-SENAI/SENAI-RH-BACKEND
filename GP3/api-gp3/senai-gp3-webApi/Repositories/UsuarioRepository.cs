@@ -132,7 +132,6 @@ namespace senai_gp3_webApi.Repositories
                 IdUnidadeSenai = novoUsuario.IdUnidadeSenai,
                 LocalizacaoUsuario = novoUsuario.LocalizacaoUsuario,
                 NivelSatisfacao = novoUsuario.NivelSatisfacao,
-                Salario = novoUsuario.Salario,
                 SaldoMoeda = novoUsuario.SaldoMoeda,
                 Vantagens = novoUsuario.Vantagens
             };
@@ -210,26 +209,44 @@ namespace senai_gp3_webApi.Repositories
 
         public Usuario ListarUsuarioPorId(int idUsuario)
         {
-            throw new System.NotImplementedException();
+            return (ctx.Usuarios.FirstOrDefault(u => u.));
         }
 
-        public Usuario Login(string email, string senha)
+        public Usuario Login(string cpf, string senha)
         {
-            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Email == email);
+            // busca um usuario correspondente com o email passado
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Cpf == cpf);
 
+            // verifica se o usuário é válido
             if (usuario != null)
             {
+                // verifica se a senha desse Usuário possui caracteristicas de um senha criptografada
                 if (usuario.Senha.Length != 60 && usuario.Senha[0].ToString() != "$")
                 {
+                    // senha criptografada
                     string senhaHash = Criptografia.GerarHash(senha);
+                    
+                    // substituindo a senha comum pela senha criptografada
                     usuario.Senha = senhaHash;
+                    
+                    // Atualizando senha no banco de dados
                     ctx.Usuarios.Update(usuario);
                     ctx.SaveChanges();
+
+                    // retorna o usuário, com senha já atualizada
                     return usuario;
+
+                } else
+                {
+                    // comparada senha que fornecida pelo usuário com a senha que já está criptografa no banco
+                    bool confere = Criptografia.CompararSenha(senha, usuario.Senha);
+                    
+                    // caso a comparação seja válida retorne o usuário
+                    if (confere)
+                        return usuario;
                 }
-                bool confere = Criptografia.CompararSenha(senha, usuario.Senha);
-                if (confere)
-                    return usuario;
+
+
             }
             return null;
         }
