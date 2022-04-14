@@ -69,7 +69,7 @@ namespace senai_gp3_webApi.Controllers
                 {
                     #region Upload da Imagem com extensões permitidas apenas
                     string[] extensoesPermitidas = { "jpg", "png", "jpeg" };
-                    string uploadResultado = Upload.UploadFile(fotoPerfil, extensoesPermitidas);
+                    string uploadResultado = Upload.UploadFile(fotoPerfil, extensoesPermitidas).ToString();
 
                     if (uploadResultado == "")
                     {

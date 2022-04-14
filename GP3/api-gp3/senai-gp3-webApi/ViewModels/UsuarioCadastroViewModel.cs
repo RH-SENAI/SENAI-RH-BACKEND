@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace senai_gp3_webApi.ViewModels
 {
@@ -38,7 +39,8 @@ namespace senai_gp3_webApi.ViewModels
         public int SaldoMoeda { get; set; }
         
         public int Trofeus { get; set; }
-        
+
+        [Required(ErrorMessage = "Localizacao do Usuario não poder ser nula!")]
         public string LocalizacaoUsuario { get; set; }
         
         public string CaminhoFotoPerfil { get; set; }

@@ -15,6 +15,11 @@ namespace senai_gp3_webApi.Repositories
             ctx = appContext;   
         }
 
+        public Unidadesenai AtualizarUniSenaiPorId(int idUniSenai, Unidadesenai UniSenaiAtualizada)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void CadastrarUniSenai(Unidadesenai unidadesenai)
         {
             ctx.Unidadesenais.Add(unidadesenai);
@@ -22,9 +27,19 @@ namespace senai_gp3_webApi.Repositories
             ctx.SaveChanges();
         }
 
+        public void DeletarUniSenai(int idUnidadeSenai)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Unidadesenai> ListarUniSenai()
         {
             return ctx.Unidadesenais.ToList();
+        }
+
+        public Unidadesenai ListarUniSenaiPorId(int idUniSenai)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

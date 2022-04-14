@@ -209,7 +209,7 @@ namespace senai_gp3_webApi.Repositories
 
         public Usuario ListarUsuarioPorId(int idUsuario)
         {
-            return (ctx.Usuarios.FirstOrDefault(u => u.));
+            return (ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario));
         }
 
         public Usuario Login(string cpf, string senha)
