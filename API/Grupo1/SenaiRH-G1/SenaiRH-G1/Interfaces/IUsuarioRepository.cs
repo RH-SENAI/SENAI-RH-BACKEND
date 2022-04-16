@@ -9,5 +9,7 @@ namespace SenaiRH_G1.Interfaces
     public interface IUsuarioRepository
     {
         Usuario Login(string email, string senha);
+        Usuario BuscarUsuario(int id);
+        List<Usuario> ListarFuncionarios();
     }
 }
