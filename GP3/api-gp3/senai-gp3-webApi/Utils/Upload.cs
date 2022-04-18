@@ -10,9 +10,21 @@ namespace senai_gp3_webApi.Utils
 {
     public static class Upload
     {
+        //String de conexão que recebemos do serviço no da AZURE
+        const string STRING_DE_CONEXAO = "DefaultEndpointsProtocol=https;AccountName=armazenamentogrupo3;AccountKey=Y4K/lMSydo5BhOrGW1NdiyLYWJdqHsm6ohUG9SWvEGJeZmxWPbmjy6DrGYlJgIqn6ADyIH/gAfaKF1NgTQ391Q==;EndpointSuffix=core.windows.net";
 
-        //Classe que nos possibilita pegar atributos do appsettings json
-        public static IConfiguration _configuration { get; set; }
+        //Nome do container em que o blob está inserido
+        const string BLOB_CONTAINER_NAME = "armazenamento-simples";
+
+        //Permite que consigamos manipular um container
+        private static BlobContainerClient blobContainerClient { get; set; }
+
+        static Upload()
+        {
+            //Permite que manipulemos um container
+            blobContainerClient = new BlobContainerClient(STRING_DE_CONEXAO, BLOB_CONTAINER_NAME);
+        }
+
 
         /// <summary>
         /// Faz o upload do arquivo para o blob
@@ -20,20 +32,12 @@ namespace senai_gp3_webApi.Utils
         /// <param name="arquivo">Arquivo vindo de um formulário</param>
         /// <param name="extensoesPermitidas">Array com extensões permitidas apenas</param>
         /// <returns>Nome do arquivo salvo</returns>
-        public static async Task<string> UploadFile(IFormFile arquivo, string[] extensoesPermitidas)
+        public static string UploadFile(IFormFile arquivo, string[] extensoesPermitidas)
         {
 
             try
             {
-                //String de conexão que recebemos do serviço no da AZURE
-                var string_de_conexao = _configuration["ConnectionStrings:AzureConnectionString"];
-
-                //Nome do container em que o blob está inserido
-                var blob_container_name = _configuration["AzureStorageConfig:BlobContainerName"];
-
-                // Permite que consigamos manipular um container
-                BlobContainerClient blobContainerClient = new BlobContainerClient(string_de_conexao, blob_container_name);
-
+              
                 if (arquivo.Length > 0)
                 {
                     //Pega a nome do IFormFile
@@ -48,11 +52,13 @@ namespace senai_gp3_webApi.Utils
                         //Atribui um novo idenfificador baseado no nome do IFormFile + extensão
                         var novoNome = $"{Guid.NewGuid()}.{extensao}";
 
+                        Console.WriteLine(novoNome);
+
                         //Permite que consigamos manipular um blob
                         BlobClient blobClient = blobContainerClient.GetBlobClient(novoNome);
 
                         //Cria um novo block blob (arquivo)
-                        await blobClient.UploadAsync(arquivo.OpenReadStream());
+                        blobClient.Upload(arquivo.OpenReadStream());
 
                         return novoNome;
                     }
@@ -94,11 +100,11 @@ namespace senai_gp3_webApi.Utils
         /// <param name="nomeDoArquivo">Nome do Arquivo</param>
         public static void RemoverArquivo(string nomeDoArquivo)
         {
-            var pasta = Path.Combine("StaticFile", "Images");
-            var caminho = Path.Combine(Directory.GetCurrentDirectory(), pasta);
-            var caminhoCompleto = Path.Combine(caminho, nomeDoArquivo);
 
-            File.Delete(caminhoCompleto);
+            //Permite que manipulemos um block blob (arquivo)
+            BlobClient blobClient = blobContainerClient.GetBlobClient(nomeDoArquivo);
+
+            blobClient.Delete();
         }
 
         /// <summary>

@@ -6,6 +6,7 @@ using senai_gp3_webApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace senai_gp3_webApi.Repositories
 {
@@ -249,6 +250,14 @@ namespace senai_gp3_webApi.Repositories
 
             }
             return null;
+        }
+
+
+        public void RemoverFotoDePerfil(int idUsuario)
+        {
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+             Upload.RemoverArquivo(usuario.CaminhoFotoPerfil);
         }
     }
 }

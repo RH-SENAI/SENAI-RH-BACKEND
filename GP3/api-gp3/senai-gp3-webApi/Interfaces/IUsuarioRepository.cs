@@ -1,6 +1,7 @@
 ﻿using senai_gp3_webApi.Domains;
 using senai_gp3_webApi.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace senai_gp3_webApi
 {
@@ -72,6 +73,13 @@ namespace senai_gp3_webApi
         /// <param name="idUsuario">id do Usuario</param>
         /// <returns>A média de avaliaca do usuario</returns>
         string CalcularMediaAvaliacao(int idUsuario);
-       
+
+        /// <summary>
+        /// Remove a foto de perfil do usuário
+        /// </summary>
+        /// <param name="idUsuario">id do usuario que foto será resolvida</param>
+        void RemoverFotoDePerfil(int idUsuario);
+
+
     }
 }

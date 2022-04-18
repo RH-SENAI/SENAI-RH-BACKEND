@@ -5,6 +5,7 @@ using senai_gp3_webApi.Utils;
 using senai_gp3_webApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -69,7 +70,7 @@ namespace senai_gp3_webApi.Controllers
                 {
                     #region Upload da Imagem com extensões permitidas apenas
                     string[] extensoesPermitidas = { "jpg", "png", "jpeg" };
-                    string uploadResultado = Upload.UploadFile(fotoPerfil, extensoesPermitidas).ToString();
+                    string uploadResultado =  Upload.UploadFile(fotoPerfil, extensoesPermitidas).ToString();
 
                     if (uploadResultado == "")
                     {
@@ -138,6 +139,29 @@ namespace senai_gp3_webApi.Controllers
                 {
 
                     _usuarioRepository.DeletarUsuario(id);
+                    return NoContent();
+                }
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
+        }
+
+        [HttpDelete("Deletar/Foto/{id}")]
+        public IActionResult DeletarFoto(int id)
+        {
+            try
+            {
+                
+
+                if (id == 0)
+                {
+                    return BadRequest("O id passado não pode ser 0");
+                }
+                else
+                {
+                    _usuarioRepository.RemoverFotoDePerfil(id);
                     return NoContent();
                 }
             }
