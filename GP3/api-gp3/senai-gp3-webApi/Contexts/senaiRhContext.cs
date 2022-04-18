@@ -50,7 +50,7 @@ namespace senai_gp3_webApi.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("name=Default;");
+                optionsBuilder.UseSqlServer("name=AzureDBConnetionString;");
             }
         }
 

@@ -828,3 +828,8 @@ C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webA
 C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\Azure.Storage.Common.dll
 C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\System.IO.Hashing.dll
 C:\Users\52645548890.INFOSCS\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\System.Memory.Data.dll
+C:\Users\Vinicius\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\Vinicius\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+C:\Users\Vinicius\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\Azure.Storage.Common.dll
+C:\Users\Vinicius\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\System.IO.Hashing.dll
+C:\Users\Vinicius\Desktop\SENAI-RH-BACKEND\GP3\api-gp3\senai-gp3-webApi\bin\Debug\net5.0\System.Memory.Data.dll

@@ -65,7 +65,7 @@ namespace senai_gp3_webApi
             });
 
             services.AddDbContext<senaiRhContext>(options =>
-    options.UseSqlServer(Configuration.GetConnectionString("Default"))
+    options.UseSqlServer(Configuration.GetConnectionString("AzureDBConnetionString"))
 );
 
             services
@@ -136,13 +136,6 @@ namespace senai_gp3_webApi
             app.UseRouting();
 
             app.UseCors("CorsPolicy");
-
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
-                RequestPath = "/StaticFiles"
-            });
 
             app.UseAuthentication();
 

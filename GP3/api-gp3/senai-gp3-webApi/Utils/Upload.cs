@@ -1,5 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Net.Http.Headers;
@@ -9,6 +10,9 @@ namespace senai_gp3_webApi.Utils
 {
     public static class Upload
     {
+
+        //Classe que nos possibilita pegar atributos do appsettings json
+        public static IConfiguration _configuration { get; set; }
 
         /// <summary>
         /// Faz o upload do arquivo para o blob
@@ -22,13 +26,13 @@ namespace senai_gp3_webApi.Utils
             try
             {
                 //String de conexão que recebemos do serviço no da AZURE
-                const string STRING_DE_CONEXAO = "DefaultEndpointsProtocol=https;AccountName=armazenamentogrupo3;AccountKey=Y4K/lMSydo5BhOrGW1NdiyLYWJdqHsm6ohUG9SWvEGJeZmxWPbmjy6DrGYlJgIqn6ADyIH/gAfaKF1NgTQ391Q==;EndpointSuffix=core.windows.net";
+                var string_de_conexao = _configuration["ConnectionStrings:AzureConnectionString"];
 
                 //Nome do container em que o blob está inserido
-                const string BLOB_CONTAINER_NAME = "armazenamento-simples";
+                var blob_container_name = _configuration["AzureStorageConfig:BlobContainerName"];
 
                 // Permite que consigamos manipular um container
-                BlobContainerClient blobContainerClient = new BlobContainerClient(STRING_DE_CONEXAO, BLOB_CONTAINER_NAME);
+                BlobContainerClient blobContainerClient = new BlobContainerClient(string_de_conexao, blob_container_name);
 
                 if (arquivo.Length > 0)
                 {
@@ -40,7 +44,7 @@ namespace senai_gp3_webApi.Utils
                     if (ValidarExtensao(extensoesPermitidas, fileName))
                     {
                         var extensao = RetornarExtensao(fileName);
-                        
+
                         //Atribui um novo idenfificador baseado no nome do IFormFile + extensão
                         var novoNome = $"{Guid.NewGuid()}.{extensao}";
 
@@ -49,7 +53,7 @@ namespace senai_gp3_webApi.Utils
 
                         //Cria um novo block blob (arquivo)
                         await blobClient.UploadAsync(arquivo.OpenReadStream());
-                        
+
                         return novoNome;
                     }
                     return "Extensão não permitida";

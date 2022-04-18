@@ -9606,19 +9606,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\52645548890.INFOSCS\\.nuget\\packages\\": {}
+    "C:\\Users\\Vinicius\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\52645548890.INFOSCS\\Desktop\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
+      "projectUniqueName": "C:\\Users\\Vinicius\\Desktop\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
       "projectName": "senai-gp3-webApi",
-      "projectPath": "C:\\Users\\52645548890.INFOSCS\\Desktop\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
-      "packagesPath": "C:\\Users\\52645548890.INFOSCS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\52645548890.INFOSCS\\Desktop\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\obj\\",
+      "projectPath": "C:\\Users\\Vinicius\\Desktop\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\senai-gp3-webApi.csproj",
+      "packagesPath": "C:\\Users\\Vinicius\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vinicius\\Desktop\\SENAI-RH-BACKEND\\GP3\\api-gp3\\senai-gp3-webApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\52645548890.INFOSCS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vinicius\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9705,12 +9705,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.12, 5.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9719,7 +9713,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
       }
     }
   }
