@@ -31,8 +31,15 @@ namespace senai_gp3_webApi
         /// Atualiza um usuario
         /// </summary>
         /// <param name="idUsuario">Id do Usuario</param>
-        /// <param name="usuarioAtualizado">Objeto de usuario</param>
-        Usuario AtualizarUsuario(int idUsuario, Usuario usuarioAtualizado);
+        /// <param name="GestorAtualizado">Objeto que pertence a um gestor atualizado</param>
+        Usuario AtualizarGestor(int idUsuario, GestorAtualizadoViewModel GestorAtualizado);
+
+        /// <summary>
+        /// Atualiza um usuario
+        /// </summary>
+        /// <param name="idUsuario">Id do Usuario</param>
+        /// <param name="funcionarioAtualizado">Objeto que pertence a um gestor atualizado</param>
+        Usuario AtualizarFuncionario(int idUsuario, Usuario funcionarioAtualizado);
 
         /// <summary>
         /// Lista os usuarios
@@ -46,19 +53,6 @@ namespace senai_gp3_webApi
         /// <param name="idUsuario">id do Usuario</param>
         /// <returns>Um usuario que foi achado</returns>
         Usuario ListarUsuarioPorId(int idUsuario);
-
-        /// <summary>
-        /// Lista o Salado de um Usuario
-        /// </summary>
-        /// <param name="idUsuario">id do usuario </param>
-        /// <returns> O salario do usuario</returns>
-        string ListarSalario(int idUsuario);
-
-        /// <summary>
-        /// Atualiza a foto de perfil
-        /// </summary>
-        /// <param name="idUsuario">id do Usuario</param>
-        void AtualizarFotoDePerfil(int idUsuario);
 
         /// <summary>
         /// Calcula a satisfacao
@@ -79,7 +73,5 @@ namespace senai_gp3_webApi
         /// </summary>
         /// <param name="idUsuario">id do usuario que foto será resolvida</param>
         void RemoverFotoDePerfil(int idUsuario);
-
-
     }
 }

@@ -39,7 +39,7 @@ namespace senai_gp3_webApi.Controllers
             }
         }
 
-        
+
         [HttpGet("Listar/{idUsuario}")]
         public IActionResult ListaUsuarioPorId(int idUsuario)
         {
@@ -66,11 +66,11 @@ namespace senai_gp3_webApi.Controllers
                 if (fotoPerfil == null)
                 {
                     novoUsuario.CaminhoFotoPerfil = "imagem-padrao.png";
-                } else
+                }
+                else
                 {
                     #region Upload da Imagem com extensões permitidas apenas
-                    string[] extensoesPermitidas = { "jpg", "png", "jpeg" };
-                    string uploadResultado =  Upload.UploadFile(fotoPerfil, extensoesPermitidas).ToString();
+                    string uploadResultado = Upload.EnviarFoto(fotoPerfil).ToString();
 
                     if (uploadResultado == "")
                     {
@@ -90,7 +90,8 @@ namespace senai_gp3_webApi.Controllers
                 if (novoUsuario == null)
                 {
                     return BadRequest("Todos os campos do usuario devem ser preenchidos !");
-                } else
+                }
+                else
                 {
                     _usuarioRepository.CadastrarUsuario(novoUsuario);
                     return StatusCode(201);
@@ -102,21 +103,36 @@ namespace senai_gp3_webApi.Controllers
                 return BadRequest(exp);
             }
         }
-        [HttpPut("Atualizar/{idUsuario}")]
-        public IActionResult AtualizarUsuario(int idUsuario,  Usuario usuarioAtualizado)
+        
+        [HttpPut("Atualizar/Funcionario/{idUsuario}")]
+        public IActionResult AtualizarGestor(int idUsuario, [FromForm] GestorAtualizadoViewModel gestorAtualizado, IFormFile novaFotoPerfil)
         {
             try
             {
+                //Procura um usuario com o id passado
+                var gestorAchado = _usuarioRepository.ListarUsuarioPorId(idUsuario);
 
-
-                if (usuarioAtualizado == null)
+                //Verifica se o usuário foi achado
+                if (gestorAchado == null)
                 {
-                    return BadRequest("Nenhum campo foi atualizado");
+                    //Verifica se esse usuário é um gestor
+                    if (gestorAchado.IdTipoUsuario == 2)
+                    {
+                        //Verifica se o gestor quis atualizar sua própria foto
+                        if(novaFotoPerfil != null)
+                        {
+                            //Atualiza a lá no blob
+                            gestorAchado.CaminhoFotoPerfil = Upload.AtualizarFoto(gestorAchado.CaminhoFotoPerfil, novaFotoPerfil);
+                        }
+
+                        return Ok(_usuarioRepository.AtualizarGestor(idUsuario, gestorAtualizado));
+                    }
+
+                    return BadRequest("O Usuário passado não é um gestor !");
+
                 } else
                 {
-                    usuarioAtualizado.CaminhoFotoPerfil = "";
-                    return Ok(_usuarioRepository.AtualizarUsuario(idUsuario, usuarioAtualizado));
-
+                    return BadRequest("Nenhum campo foi atualizado");
                 }
             }
             catch (Exception execp)
@@ -148,27 +164,30 @@ namespace senai_gp3_webApi.Controllers
             }
         }
 
-        [HttpDelete("Deletar/Foto/{id}")]
-        public IActionResult DeletarFoto(int id)
-        {
-            try
-            {
-                
 
-                if (id == 0)
-                {
-                    return BadRequest("O id passado não pode ser 0");
-                }
-                else
-                {
-                    _usuarioRepository.RemoverFotoDePerfil(id);
-                    return NoContent();
-                }
-            }
-            catch (Exception execp)
-            {
-                return BadRequest(execp);
-            }
-        }
+        /*** ESSE METÓDO SERVIU APENAS PARA TESTAR SE O REMOVER FOTO ESTAVA FUNCIONANDO ***/
+        
+        //[HttpDelete("Deletar/Foto/{id}")]
+        //public IActionResult DeletarFoto(int id)
+        //{
+        //    try
+        //    {
+
+
+        //        if (id == 0)
+        //        {
+        //            return BadRequest("O id passado não pode ser 0");
+        //        }
+        //        else
+        //        {
+        //            _usuarioRepository.RemoverFotoDePerfil(id);
+        //            return NoContent();
+        //        }
+        //    }
+        //    catch (Exception execp)
+        //    {
+        //        return BadRequest(execp);
+        //    }
+        //}
     }
 }

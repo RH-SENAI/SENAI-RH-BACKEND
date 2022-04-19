@@ -29,19 +29,21 @@ namespace senai_gp3_webApi.Utils
         /// <summary>
         /// Faz o upload do arquivo para o blob
         /// </summary>
-        /// <param name="arquivo">Arquivo vindo de um formulário</param>
-        /// <param name="extensoesPermitidas">Array com extensões permitidas apenas</param>
+        /// <param name="fotoPerfil">Arquivo vindo de um formulário</param>
         /// <returns>Nome do arquivo salvo</returns>
-        public static string UploadFile(IFormFile arquivo, string[] extensoesPermitidas)
+        public static string EnviarFoto(IFormFile fotoPerfil)
         {
 
             try
             {
-              
-                if (arquivo.Length > 0)
+
+                string[] extensoesPermitidas = { "jpg", "png", "jpeg" };
+
+
+                if (fotoPerfil.Length > 0)
                 {
                     //Pega a nome do IFormFile
-                    var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim('"');
+                    var fileName = ContentDispositionHeaderValue.Parse(fotoPerfil.ContentDisposition).FileName.Trim('"');
 
 
                     //Valida a estensão 
@@ -58,7 +60,7 @@ namespace senai_gp3_webApi.Utils
                         BlobClient blobClient = blobContainerClient.GetBlobClient(novoNome);
 
                         //Cria um novo block blob (arquivo)
-                        blobClient.Upload(arquivo.OpenReadStream());
+                        blobClient.Upload(fotoPerfil.OpenReadStream());
 
                         return novoNome;
                     }
@@ -77,11 +79,11 @@ namespace senai_gp3_webApi.Utils
         /// Valida o uso de enxtensões permitidas apenas
         /// </summary>
         /// <param name="extensoes">Array de extensões permitidas</param>
-        /// <param name="nomeDoArquivo">Nome do arquivo</param>
+        /// <param name="nomeDaFoto">Nome do arquivo</param>
         /// <returns>Verdadeiro/Falso</returns>
-        public static bool ValidarExtensao(string[] extensoes, string nomeDoArquivo)
+        public static bool ValidarExtensao(string[] extensoes, string nomeDaFoto)
         {
-            string[] dados = nomeDoArquivo.Split(".");
+            string[] dados = nomeDaFoto.Split(".");
             string extensao = dados[dados.Length - 1];
 
             foreach (var item in extensoes)
@@ -97,14 +99,28 @@ namespace senai_gp3_webApi.Utils
         /// <summary>
         /// Remove um arquivo do servidor
         /// </summary>
-        /// <param name="nomeDoArquivo">Nome do Arquivo</param>
-        public static void RemoverArquivo(string nomeDoArquivo)
+        /// <param name="nomeDaFoto">Nome do Arquivo</param>
+        public static void RemoverFoto(string nomeDaFoto)
         {
 
             //Permite que manipulemos um block blob (arquivo)
-            BlobClient blobClient = blobContainerClient.GetBlobClient(nomeDoArquivo);
+            BlobClient blobClient = blobContainerClient.GetBlobClient(nomeDaFoto);
 
             blobClient.Delete();
+        }
+
+
+        public static string AtualizarFoto(string nomeFotoAntiga, IFormFile novaFoto )
+        {
+            //Remove a foto antiga
+            RemoverFoto(nomeFotoAntiga);
+            
+            //Coloca a nova foto que foi inserida
+            string nomeFotoAtualizada = EnviarFoto(novaFoto);
+
+            // retorna o nome da foto com a guid
+            return nomeFotoAtualizada;
+
         }
 
         /// <summary>

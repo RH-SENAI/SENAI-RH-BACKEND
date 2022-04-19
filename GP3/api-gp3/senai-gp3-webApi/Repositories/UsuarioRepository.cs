@@ -19,98 +19,73 @@ namespace senai_gp3_webApi.Repositories
             ctx = appContext;
         }
 
-        public void AtualizarFotoDePerfil(int idUsuario)
+        public Usuario AtualizarFuncionario(int idUsuario, Usuario funcionarioAtualizado)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Usuario AtualizarUsuario(int idUsuario, Usuario usuarioAtualizado)
+        public Usuario AtualizarGestor(int idUsuario, GestorAtualizadoViewModel GestorAtualizado)
         {
-            var usuarioAchado = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+            var GestorAchado = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
 
-            if (usuarioAchado != null)
+            if (GestorAchado != null)
             {
 
-                if (usuarioAtualizado.Nome != null)
+                if (GestorAtualizado.Nome != null)
                 {
-                    usuarioAchado.Nome = usuarioAtualizado.Nome;
+                    GestorAchado.Nome = GestorAtualizado.Nome;
                 }
 
-                if (usuarioAtualizado.Email != null)
+                if (GestorAtualizado.Email != null)
                 {
-                    usuarioAchado.Email = usuarioAtualizado.Email;
+                    GestorAchado.Email = GestorAtualizado.Email;
                 }
 
-                if (usuarioAtualizado.Senha != null)
+                if (GestorAtualizado.Senha != null)
                 {
-                    usuarioAchado.Senha = usuarioAtualizado.Senha;
+                    GestorAchado.Senha = GestorAtualizado.Senha;
                 }
 
-                if (usuarioAtualizado.Cpf != null)
+                if (GestorAtualizado.Cpf != null)
                 {
-                    usuarioAchado.Cpf = usuarioAtualizado.Cpf;
+                    GestorAchado.Cpf = GestorAtualizado.Cpf;
                 }
 
-                if (usuarioAtualizado.CaminhoFotoPerfil != null)
+                if (GestorAtualizado.CaminhoFotoPerfil != null)
                 {
-                    usuarioAchado.CaminhoFotoPerfil = usuarioAtualizado.CaminhoFotoPerfil;
+                    GestorAchado.CaminhoFotoPerfil = GestorAtualizado.CaminhoFotoPerfil;
                 }
 
-                if (usuarioAchado.DataNascimento < usuarioAtualizado.DataNascimento)
+                if (GestorAtualizado.DataNascimento < GestorAtualizado.DataNascimento)
                 {
-                    usuarioAchado.DataNascimento = usuarioAtualizado.DataNascimento;
+                    GestorAchado.DataNascimento = GestorAtualizado.DataNascimento;
                 }
 
-                if (usuarioAtualizado.IdTipoUsuario != 0)
+                if (GestorAtualizado.IdTipoUsuario != 0)
                 {
-                    usuarioAchado.IdTipoUsuario = usuarioAtualizado.IdTipoUsuario;
+                    GestorAchado.IdTipoUsuario = GestorAtualizado.IdTipoUsuario;
                 }
 
-                if (usuarioAtualizado.Trofeus != 0)
+                if (GestorAtualizado.IdCargo != 0)
                 {
-                    usuarioAchado.Trofeus = usuarioAtualizado.Trofeus;
+                    GestorAchado.IdCargo = GestorAtualizado.IdCargo;
                 }
 
-                if (usuarioAtualizado.IdCargo != 0)
+                if (GestorAtualizado.IdUnidadeSenai != 0)
                 {
-                    usuarioAchado.IdCargo = usuarioAtualizado.IdCargo;
+                    GestorAchado.IdUnidadeSenai = GestorAtualizado.IdUnidadeSenai;
                 }
 
-                if (usuarioAtualizado.IdUnidadeSenai != 0)
+                if (GestorAtualizado.LocalizacaoUsuario != null)
                 {
-                    usuarioAchado.IdUnidadeSenai = usuarioAtualizado.IdUnidadeSenai;
+                    GestorAchado.LocalizacaoUsuario = GestorAtualizado.LocalizacaoUsuario;
                 }
 
-                if (usuarioAtualizado.LocalizacaoUsuario != null)
-                {
-                    usuarioAchado.LocalizacaoUsuario = usuarioAtualizado.LocalizacaoUsuario;
-                }
-
-                if (usuarioAtualizado.NivelSatisfacao != 0)
-                {
-                    usuarioAchado.NivelSatisfacao = usuarioAtualizado.NivelSatisfacao;
-                }
-
-                if (usuarioAtualizado.Salario != 0)
-                {
-                    usuarioAchado.Salario = usuarioAtualizado.Salario;
-                }
-
-                if (usuarioAtualizado.SaldoMoeda != 0)
-                {
-                    usuarioAchado.SaldoMoeda = usuarioAtualizado.SaldoMoeda;
-                }
-
-                if (usuarioAtualizado.Vantagens != 0)
-                {
-                    usuarioAchado.Vantagens = usuarioAtualizado.Vantagens;
-                }
-
-                ctx.Usuarios.Update(usuarioAchado);
+                ctx.Usuarios.Update(GestorAchado);
 
                 ctx.SaveChanges();
 
-                return usuarioAchado;
+                return GestorAchado;
             }
 
             return null;
@@ -161,11 +136,6 @@ namespace senai_gp3_webApi.Repositories
             ctx.Usuarios.Remove(usuarioAchado);
 
             ctx.SaveChanges();
-        }
-
-        public string ListarSalario(int idUsuario)
-        {
-            throw new System.NotImplementedException();
         }
 
         public List<Usuario> ListarUsuario()
