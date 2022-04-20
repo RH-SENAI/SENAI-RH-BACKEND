@@ -137,7 +137,7 @@
             <summary>
             Método para fazer login no sistema
             </summary>
-            <param name="email">email do usuário que será logado</param>
+            <param name="Cpf">CPF do usuário que será logado</param>
             <param name="senha">senha do usuário que será logado</param>
             <returns>Usuario</returns>
         </member>

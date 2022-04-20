@@ -7,7 +7,7 @@ namespace SenaiRH_G1.ViewModel
 {
     public class LoginViewModel
     {
-        public string email { get; set; }
+        public string Cpf { get; set; }
         public string senha { get; set; }
     }
 }

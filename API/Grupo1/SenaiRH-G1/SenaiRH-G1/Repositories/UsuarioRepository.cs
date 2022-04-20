@@ -63,13 +63,13 @@ namespace SenaiRH_G1.Repositories
         /// <summary>
         /// Método para fazer login no sistema
         /// </summary>
-        /// <param name="email">email do usuário que será logado</param>
+        /// <param name="Cpf">CPF do usuário que será logado</param>
         /// <param name="senha">senha do usuário que será logado</param>
         /// <returns>Usuario</returns>
-        public Usuario Login(string email, string senha)
+        public Usuario Login(string Cpf, string senha)
         {
             //Busca usuário pelo email
-            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Email == email);
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Cpf == Cpf);
 
             //Caso o usuário seja válido
             if (usuario != null)
