@@ -104,7 +104,7 @@ namespace senai_gp3_webApi.Controllers
             }
         }
         
-        [HttpPut("Atualizar/Funcionario/{idUsuario}")]
+        [HttpPut("Atualizar/Gestor/{idUsuario}")]
         public IActionResult AtualizarGestor(int idUsuario, [FromForm] GestorAtualizadoViewModel gestorAtualizado, IFormFile novaFotoPerfil)
         {
             try

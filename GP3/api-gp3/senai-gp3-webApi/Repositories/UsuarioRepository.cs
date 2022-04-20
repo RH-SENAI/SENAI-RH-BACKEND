@@ -227,7 +227,7 @@ namespace senai_gp3_webApi.Repositories
         {
             var usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
 
-             Upload.RemoverArquivo(usuario.CaminhoFotoPerfil);
+             Upload.RemoverFoto(usuario.CaminhoFotoPerfil);
         }
     }
 }
