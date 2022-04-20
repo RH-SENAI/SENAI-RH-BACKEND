@@ -113,7 +113,7 @@ namespace senai_gp3_webApi.Controllers
                 var gestorAchado = _usuarioRepository.ListarUsuarioPorId(idUsuario);
 
                 //Verifica se o usuário foi achado
-                if (gestorAchado == null)
+                if (gestorAchado != null)
                 {
                     //Verifica se esse usuário é um gestor
                     if (gestorAchado.IdTipoUsuario == 2)

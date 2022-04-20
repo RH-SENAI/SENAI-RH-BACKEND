@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
@@ -110,17 +111,44 @@ namespace senai_gp3_webApi.Utils
         }
 
 
+        /// <summary>
+        /// Atualiza a foto de perfil
+        /// </summary>
+        /// <param name="nomeFotoAntiga">Nome da foto antiga</param>
+        /// <param name="novaFoto">Arquivo da nova foto</param>
+        /// <returns>O nome da nova foto</returns>
         public static string AtualizarFoto(string nomeFotoAntiga, IFormFile novaFoto )
         {
-            //Remove a foto antiga
-            RemoverFoto(nomeFotoAntiga);
-            
-            //Coloca a nova foto que foi inserida
-            string nomeFotoAtualizada = EnviarFoto(novaFoto);
+            try
+            {
+                //Remove a foto antiga
+                RemoverFoto("marrom");
 
-            // retorna o nome da foto com a guid
-            return nomeFotoAtualizada;
+                //Coloca a nova foto que foi inserida
+                string nomeFotoAtualizada = EnviarFoto(novaFoto);
 
+                // retorna o nome da foto com a guid
+                return nomeFotoAtualizada;
+            }
+            catch (Azure.RequestFailedException azureExecp)
+            {
+                //Pega o status code da requisição
+                string statusCode = azureExecp.Status.ToString();
+
+                if (statusCode == "404")
+                {
+                    string nomeFotoAtualizada = EnviarFoto(novaFoto);
+
+                    return nomeFotoAtualizada;
+                }
+
+                // Retorna o erro.
+                return azureExecp.ToString();
+            }
+            catch (Exception exp)
+            {
+                return exp.ToString();
+            }
         }
 
         /// <summary>
