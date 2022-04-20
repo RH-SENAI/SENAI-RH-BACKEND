@@ -19,9 +19,24 @@ namespace senai_gp3_webApi.Repositories
             ctx = appContext;
         }
 
-        public Usuario AtualizarFuncionario(int idUsuario, Usuario funcionarioAtualizado)
+        public Usuario AtualizarFuncionario(int idUsuario)
         {
-            throw new NotImplementedException();
+            var funcionarioAchado = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+            if (funcionarioAtualizado.Senha != null)
+            {
+                funcionarioAchado.Senha = senha;
+            }
+
+            if (funcionarioAtualizado.CaminhoFotoPerfil != null)
+            {
+                funcionarioAchado.CaminhoFotoPerfil = funcionarioAtualizado.CaminhoFotoPerfil ;
+            }
+
+            ctx.Usuarios.Update(funcionarioAchado);
+            ctx.SaveChanges();
+
+            return funcionarioAchado;
         }
 
         public Usuario AtualizarGestor(int idUsuario, GestorAtualizadoViewModel GestorAtualizado)

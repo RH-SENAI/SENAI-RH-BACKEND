@@ -121,7 +121,7 @@ namespace senai_gp3_webApi.Controllers
                         //Verifica se o gestor quis atualizar sua própria foto
                         if(novaFotoPerfil != null)
                         {
-                            //Atualiza a lá no blob
+                            //Atualiza a foto lá no blob
                             gestorAchado.CaminhoFotoPerfil = Upload.AtualizarFoto(gestorAchado.CaminhoFotoPerfil, novaFotoPerfil);
                         }
 
@@ -131,6 +131,45 @@ namespace senai_gp3_webApi.Controllers
                     return BadRequest("O Usuário passado não é um gestor !");
 
                 } else
+                {
+                    return BadRequest("Nenhum campo foi atualizado");
+                }
+            }
+            catch (Exception execp)
+            {
+                return BadRequest(execp);
+            }
+        }
+
+
+        [HttpPut("Atualizar/Funcionario/{idUsuario}")]
+        public IActionResult AtualizarFuncionario(int idUsuario, string novaSenha, IFormFile novaFotoPerfil)
+        {
+            try
+            {
+                //Procura um usuario com o id passado
+                var funcionarioAchado = _usuarioRepository.ListarUsuarioPorId(idUsuario);
+
+                //Verifica se o usuário foi achado
+                if (funcionarioAchado != null)
+                {
+                    //Verifica se esse usuário é um funcionario
+                    if (funcionarioAchado.IdTipoUsuario == 1)
+                    {
+                        //Verifica se o funcionario quis atualizar sua própria foto
+                        if (novaFotoPerfil != null)
+                        {
+                            //Atualiza a foto lá no blob
+                            funcionarioAchado.CaminhoFotoPerfil = Upload.AtualizarFoto(funcionarioAchado.CaminhoFotoPerfil, novaFotoPerfil);
+                        }
+
+                        return Ok(_usuarioRepository.AtualizarFuncionario(idUsuario, novaSenha));
+                    }
+
+                    return BadRequest("O Usuário passado não é um gestor !");
+
+                }
+                else
                 {
                     return BadRequest("Nenhum campo foi atualizado");
                 }
