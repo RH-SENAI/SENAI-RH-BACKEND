@@ -35,13 +35,13 @@ namespace SenaiRH_G1.Controllers
         {
             try
             {
-                Usuario usuarioBuscado = _usuarioRepository.Login(login.email, login.senha);
+                Usuario usuarioBuscado = _usuarioRepository.Login(login.Cpf, login.senha);
 
                 if (usuarioBuscado == null)
                 {
                     return BadRequest(new
                     {
-                        mensagem = "Email ou senha inváidos!"
+                        mensagem = "CPF ou senha inváidos!"
                     });
                 }
 
