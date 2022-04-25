@@ -11,5 +11,7 @@ namespace SenaiRH_G1.Interfaces
         Usuario Login(string cpf, string senha);
         Usuario BuscarUsuario(int id);
         List<Usuario> ListarFuncionarios();
+        void AlterarSenha(string cpf, string senha, string senhaAtual);
+        bool VerificaSenha(string senha, string cpf);
     }
 }

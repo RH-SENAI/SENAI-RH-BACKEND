@@ -126,5 +126,24 @@ namespace SenaiRH_G1.Controllers
             }
             
         }
+
+        
+        [HttpPost("VerificaSenha")]
+        public IActionResult VerificaSenha(string senhaAtual, string cpf)
+        {
+            try
+            {
+                bool resposta = _usuarioRepository.VerificaSenha(senhaAtual, cpf);
+                return Ok(new
+                {
+                    Mensagem = resposta
+                });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
