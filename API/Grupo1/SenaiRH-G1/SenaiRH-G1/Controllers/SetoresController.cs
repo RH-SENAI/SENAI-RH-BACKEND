@@ -22,6 +22,10 @@ namespace SenaiRH_G1.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Endpoint que lista os setores
+        /// </summary>
+        /// <returns>Lista de setores</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Setor>>> GetSetors()
         {
