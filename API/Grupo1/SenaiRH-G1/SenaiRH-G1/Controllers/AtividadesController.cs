@@ -29,7 +29,7 @@ namespace SenaiRH_G1.Controllers
         }
 
 
-        [Authorize(Roles = "2")]
+        //[Authorize(Roles = "2")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Atividade>>> GetAtividades()
         {

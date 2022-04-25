@@ -37,5 +37,17 @@ namespace SenaiRH_G1.Repositories
             }
             return null;
         }
+
+        public Usuario BuscarPorId(int id)
+        {
+            return ctx.Usuarios.FirstOrDefault(c => c.IdUsuario == id);
+        }
+
+        public List<Usuario> ListarTodos()
+        {
+            return ctx.Usuarios.ToList();
+        }
+
+
     }
 }

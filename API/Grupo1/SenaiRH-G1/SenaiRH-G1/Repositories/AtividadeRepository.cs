@@ -61,8 +61,11 @@ namespace SenaiRH_G1.Repositories
 
         public void CadastrarAtividade(Atividade atividade)
         {
-            ctx.Atividades.Add(atividade);
-            ctx.SaveChangesAsync();
+            if (atividade.NomeAtividade != null || atividade.RecompensaTrofeu != 0 || atividade.RecompensaMoeda != 0)
+            {
+                ctx.Atividades.Add(atividade);
+                ctx.SaveChangesAsync();
+            }
         }
 
         /// <summary>
