@@ -112,6 +112,7 @@ namespace SenaiRH_G1.Repositories
             return null;
         }
 
+<<<<<<< HEAD
         public void AlterarSenha(string cpf, string senha, string senhaAtual)
         {
             var usuario = ctx.Usuarios.FirstOrDefault(u => u.Cpf == cpf);
@@ -138,5 +139,18 @@ namespace SenaiRH_G1.Repositories
             }
             return false;
         }
+=======
+        public Usuario BuscarPorId(int id)
+        {
+            return ctx.Usuarios.FirstOrDefault(c => c.IdUsuario == id);
+        }
+
+        public List<Usuario> ListarTodos()
+        {
+            return ctx.Usuarios.ToList();
+        }
+
+
+>>>>>>> c156a4244c69d0ad6be96c7d16c9106b9eb06282
     }
 }

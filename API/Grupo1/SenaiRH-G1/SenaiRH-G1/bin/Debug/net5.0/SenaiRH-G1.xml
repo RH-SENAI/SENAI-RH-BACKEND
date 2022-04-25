@@ -4,26 +4,6 @@
         <name>SenaiRH-G1</name>
     </assembly>
     <members>
-        <member name="M:SenaiRH_G1.Controllers.AtividadesController.GetAtividades">
-            <summary>
-            Endpoint que lista todas as atividades
-            </summary>
-            <returns>Lista de atividades</returns>
-        </member>
-        <member name="M:SenaiRH_G1.Controllers.AtividadesController.PostAtividade(SenaiRH_G1.Domains.Atividade)">
-            <summary>
-            Endpoint para cadastrar uma atividade
-            </summary>
-            <param name="atividade">Objeto que será cadastrao</param>
-            <returns>Atividade que foi cadastrada</returns>
-        </member>
-        <member name="M:SenaiRH_G1.Controllers.AtividadesController.DeleteEquipamento(System.Int32)">
-            <summary>
-            Endpoint para deletar uma atividade do sistema
-            </summary>
-            <param name="id">ID da atividade que será deletada</param>
-            <returns>NoContent</returns>
-        </member>
         <member name="M:SenaiRH_G1.Controllers.AtividadesController.ListarMinhasAtividades(System.Int32)">
             <summary>
             Endpoint de listar atividades do usuário
@@ -54,12 +34,6 @@
             <param name="idUsuario">ID do usuario que terá sua atividade validada.</param>
             <returns>Mensagem de confirmação</returns>
         </member>
-        <member name="M:SenaiRH_G1.Controllers.AtividadesController.ListaValidar">
-            <summary>
-            Endpoint para listar todas as atividades que necessitam de validação 
-            </summary>
-            <returns>Lista de atividades</returns>
-        </member>
         <member name="M:SenaiRH_G1.Controllers.LoginController.Login(SenaiRH_G1.ViewModel.LoginViewModel)">
             <summary>
             Valida o Usuário
@@ -72,25 +46,6 @@
             Endpoint que lista os setores
             </summary>
             <returns>Lista de setores</returns>
-        </member>
-        <member name="M:SenaiRH_G1.Controllers.UsuariosController.BuscarUsuario(System.Int32)">
-            <summary>
-            Endpoint para buscar um usuário pelo ID
-            </summary>
-            <param name="id">ID do usuário que será buscado</param>
-            <returns>Retorna usuário buscado</returns>
-        </member>
-        <member name="M:SenaiRH_G1.Controllers.UsuariosController.BuscarUsuarioLogado">
-            <summary>
-            Endpoint para buscar o usuário logado
-            </summary>
-            <returns>O usuário que está logado</returns>
-        </member>
-        <member name="M:SenaiRH_G1.Controllers.UsuariosController.ListarFuncionarios">
-            <summary>
-            Endpoint que lista todos os funcionários 
-            </summary>
-            <returns>Lista de Uusários</returns>
         </member>
         <member name="M:SenaiRH_G1.Repositories.AtividadeRepository.AssociarAtividade(System.Int32,System.Int32)">
             <summary>
