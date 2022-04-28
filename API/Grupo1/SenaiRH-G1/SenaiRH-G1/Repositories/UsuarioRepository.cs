@@ -112,26 +112,30 @@ namespace SenaiRH_G1.Repositories
             return null;
         }
 
-<<<<<<< HEAD
-        public void AlterarSenha(string cpf, string senha, string senhaAtual)
+        public void AlterarSenha(int idUsuario, string senhaNova, string senhaAtual, string senhaConfirmacao)
         {
-            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Cpf == cpf);
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
             if (usuario != null)
             {
                 if (BCrypt.Net.BCrypt.Verify(senhaAtual, usuario.Senha))
                 {
-                    string novaSenha = BCrypt.Net.BCrypt.HashPassword(senha);
-                    usuario.Senha = novaSenha;
-                    ctx.Usuarios.Add(usuario);
-                    ctx.SaveChanges();
+                    if (senhaNova == senhaConfirmacao)
+                    {
+                        string novaSenhaHash = BCrypt.Net.BCrypt.HashPassword(senhaNova);
+                        usuario.Senha = novaSenhaHash;
+                        usuario.UsuarioAtivo = true;
+                        ctx.Usuarios.Add(usuario);
+                        ctx.SaveChanges();
+                    }
+                    
                 }
                 
             }
         }
 
-        public bool VerificaSenha(string senha, string cpf)
+        public bool VerificaSenha(string senha, int idUsuario)
         {
-            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Cpf == cpf);
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
 
             if (BCrypt.Net.BCrypt.Verify(senha, usuario.Senha))
             {
@@ -139,18 +143,5 @@ namespace SenaiRH_G1.Repositories
             }
             return false;
         }
-=======
-        public Usuario BuscarPorId(int id)
-        {
-            return ctx.Usuarios.FirstOrDefault(c => c.IdUsuario == id);
-        }
-
-        public List<Usuario> ListarTodos()
-        {
-            return ctx.Usuarios.ToList();
-        }
-
-
->>>>>>> c156a4244c69d0ad6be96c7d16c9106b9eb06282
     }
 }
