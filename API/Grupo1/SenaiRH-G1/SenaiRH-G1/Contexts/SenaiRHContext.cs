@@ -68,10 +68,6 @@ namespace SenaiRH_G1.Contexts
 
                 entity.Property(e => e.IdAtividade).HasColumnName("idAtividade");
 
-                entity.Property(e => e.DataCadastro)
-                    .HasColumnType("date")
-                    .HasColumnName("dataCadastro");
-
                 entity.Property(e => e.DataConclusao)
                     .HasColumnType("date")
                     .HasColumnName("dataConclusao");
