@@ -124,7 +124,7 @@ namespace SenaiRH_G1.Repositories
                         string novaSenhaHash = BCrypt.Net.BCrypt.HashPassword(senhaNova);
                         usuario.Senha = novaSenhaHash;
                         usuario.UsuarioAtivo = true;
-                        ctx.Usuarios.Add(usuario);
+                        ctx.Usuarios.Update(usuario);
                         ctx.SaveChanges();
                     }
                     

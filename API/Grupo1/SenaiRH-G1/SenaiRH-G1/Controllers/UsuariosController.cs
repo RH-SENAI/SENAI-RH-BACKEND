@@ -180,6 +180,7 @@ namespace SenaiRH_G1.Controllers
             catch (Exception ex)
             {
 
+                throw;
                 return BadRequest(ex);
             }
         }
