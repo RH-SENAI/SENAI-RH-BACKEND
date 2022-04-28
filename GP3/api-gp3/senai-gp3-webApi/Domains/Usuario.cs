@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -10,6 +9,7 @@ namespace senai_gp3_webApi.Domains
     {
         public Usuario()
         {
+            Atividades = new HashSet<Atividade>();
             Avaliacaounidadesenais = new HashSet<Avaliacaounidadesenai>();
             AvaliacaousuarioIdUsuarioAvaliadoNavigations = new HashSet<Avaliacaousuario>();
             AvaliacaousuarioIdUsuarioAvaliadorNavigations = new HashSet<Avaliacaousuario>();
@@ -31,7 +31,6 @@ namespace senai_gp3_webApi.Domains
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
         public short Vantagens { get; set; }
         public decimal NivelSatisfacao { get; set; }
@@ -40,11 +39,12 @@ namespace senai_gp3_webApi.Domains
         public int Trofeus { get; set; }
         public string LocalizacaoUsuario { get; set; }
         public string CaminhoFotoPerfil { get; set; }
-        public decimal Salario { get; set; }
+        public bool? UsuarioAtivo { get; set; }
 
         public virtual Cargo IdCargoNavigation { get; set; }
         public virtual Tipousuario IdTipoUsuarioNavigation { get; set; }
         public virtual Unidadesenai IdUnidadeSenaiNavigation { get; set; }
+        public virtual ICollection<Atividade> Atividades { get; set; }
         public virtual ICollection<Avaliacaounidadesenai> Avaliacaounidadesenais { get; set; }
         public virtual ICollection<Avaliacaousuario> AvaliacaousuarioIdUsuarioAvaliadoNavigations { get; set; }
         public virtual ICollection<Avaliacaousuario> AvaliacaousuarioIdUsuarioAvaliadorNavigations { get; set; }

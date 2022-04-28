@@ -85,8 +85,6 @@ namespace senai_gp3_webApi.Controllers
                     #endregion
                 }
 
-
-
                 if (novoUsuario == null)
                 {
                     return BadRequest("Todos os campos do usuario devem ser preenchidos !");
@@ -103,7 +101,7 @@ namespace senai_gp3_webApi.Controllers
                 return BadRequest(exp);
             }
         }
-        
+
         [HttpPut("Atualizar/Gestor/{idUsuario}")]
         public IActionResult AtualizarGestor(int idUsuario, [FromForm] GestorAtualizadoViewModel gestorAtualizado, IFormFile novaFotoPerfil)
         {
@@ -112,16 +110,13 @@ namespace senai_gp3_webApi.Controllers
                 //Procura um usuario com o id passado
                 var gestorAchado = _usuarioRepository.ListarUsuarioPorId(idUsuario);
 
-                //Verifica se o usuário foi achado
                 if (gestorAchado != null)
                 {
                     //Verifica se esse usuário é um gestor
                     if (gestorAchado.IdTipoUsuario == 2)
                     {
-                        //Verifica se o gestor quis atualizar sua própria foto
-                        if(novaFotoPerfil != null)
+                        if (novaFotoPerfil != null)
                         {
-                            //Atualiza a foto lá no blob
                             gestorAchado.CaminhoFotoPerfil = Upload.AtualizarFoto(gestorAchado.CaminhoFotoPerfil, novaFotoPerfil);
                         }
 
@@ -129,8 +124,8 @@ namespace senai_gp3_webApi.Controllers
                     }
 
                     return BadRequest("O Usuário passado não é um gestor !");
-
-                } else
+                }
+                else
                 {
                     return BadRequest("Nenhum campo foi atualizado");
                 }
@@ -143,14 +138,12 @@ namespace senai_gp3_webApi.Controllers
 
 
         [HttpPut("Atualizar/Funcionario/{idUsuario}")]
-        public IActionResult AtualizarFuncionario(int idUsuario, string novaSenha, IFormFile novaFotoPerfil)
+        public IActionResult AtualizarFuncionario(int idUsuario, FuncionarioAtualizadoViewModel funcionarioAtualizado, IFormFile novaFotoPerfil)
         {
             try
             {
-                //Procura um usuario com o id passado
                 var funcionarioAchado = _usuarioRepository.ListarUsuarioPorId(idUsuario);
 
-                //Verifica se o usuário foi achado
                 if (funcionarioAchado != null)
                 {
                     //Verifica se esse usuário é um funcionario
@@ -163,10 +156,10 @@ namespace senai_gp3_webApi.Controllers
                             funcionarioAchado.CaminhoFotoPerfil = Upload.AtualizarFoto(funcionarioAchado.CaminhoFotoPerfil, novaFotoPerfil);
                         }
 
-                        return Ok(_usuarioRepository.AtualizarFuncionario(idUsuario, novaSenha));
+                        return Ok(_usuarioRepository.AtualizarFuncionario(idUsuario, funcionarioAtualizado));
                     }
 
-                    return BadRequest("O Usuário passado não é um gestor !");
+                    return BadRequest("O Usuário passado não é um funcionário !");
 
                 }
                 else
@@ -192,7 +185,6 @@ namespace senai_gp3_webApi.Controllers
                 }
                 else
                 {
-
                     _usuarioRepository.DeletarUsuario(id);
                     return NoContent();
                 }
@@ -205,7 +197,7 @@ namespace senai_gp3_webApi.Controllers
 
 
         /*** ESSE METÓDO SERVIU APENAS PARA TESTAR SE O REMOVER FOTO ESTAVA FUNCIONANDO ***/
-        
+
         //[HttpDelete("Deletar/Foto/{id}")]
         //public IActionResult DeletarFoto(int id)
         //{

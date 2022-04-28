@@ -13,17 +13,15 @@ namespace senai_gp3_webApi.Utils
     {
         //String de conexão que recebemos do serviço no da AZURE
         const string STRING_DE_CONEXAO = "DefaultEndpointsProtocol=https;AccountName=armazenamentogrupo3;AccountKey=Y4K/lMSydo5BhOrGW1NdiyLYWJdqHsm6ohUG9SWvEGJeZmxWPbmjy6DrGYlJgIqn6ADyIH/gAfaKF1NgTQ391Q==;EndpointSuffix=core.windows.net";
-
-        //Nome do container em que o blob está inserido
         const string BLOB_CONTAINER_NAME = "armazenamento-simples";
 
         //Permite que consigamos manipular um container
-        private static BlobContainerClient blobContainerClient { get; set; }
+        private static BlobContainerClient BlobContainerClient { get; set; }
 
         static Upload()
         {
             //Permite que manipulemos um container
-            blobContainerClient = new BlobContainerClient(STRING_DE_CONEXAO, BLOB_CONTAINER_NAME);
+            BlobContainerClient = new BlobContainerClient(STRING_DE_CONEXAO, BLOB_CONTAINER_NAME);
         }
 
 
@@ -58,7 +56,7 @@ namespace senai_gp3_webApi.Utils
                         Console.WriteLine(novoNome);
 
                         //Permite que consigamos manipular um blob
-                        BlobClient blobClient = blobContainerClient.GetBlobClient(novoNome);
+                        BlobClient blobClient = BlobContainerClient.GetBlobClient(novoNome);
 
                         //Cria um novo block blob (arquivo)
                         blobClient.Upload(fotoPerfil.OpenReadStream());
@@ -105,7 +103,7 @@ namespace senai_gp3_webApi.Utils
         {
 
             //Permite que manipulemos um block blob (arquivo)
-            BlobClient blobClient = blobContainerClient.GetBlobClient(nomeDaFoto);
+            BlobClient blobClient = BlobContainerClient.GetBlobClient(nomeDaFoto);
 
             blobClient.Delete();
         }

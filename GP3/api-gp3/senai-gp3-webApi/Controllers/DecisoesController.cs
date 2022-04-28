@@ -38,13 +38,6 @@ namespace senai_gp3_webApi.Controllers
             }
         }
 
-        // GET api/<DecisoesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<DecisoesController>
         [HttpPost("Cadastrar")]
         public IActionResult CadastrarDecisoes(Decisao novaDecisao)
@@ -56,6 +49,7 @@ namespace senai_gp3_webApi.Controllers
                 if (novaDecisao == null)
                 {
                     return BadRequest("Objeto Vazio!");
+
                 } else
                 {
                     novaDecisao.IdUsuario = idUsuario;
@@ -67,18 +61,6 @@ namespace senai_gp3_webApi.Controllers
             {
                 return BadRequest(execp);
             }
-        }
-
-        // PUT api/<DecisoesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<DecisoesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

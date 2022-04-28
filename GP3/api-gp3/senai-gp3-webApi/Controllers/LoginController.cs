@@ -84,7 +84,6 @@ namespace senai_gp3_webApi.Controllers
                 return NotFound(
                     new
                     {
-
                         mensagem = "Email/senha passados estão incorretos ou o usuário não existe !",
                         erro = true
                     }

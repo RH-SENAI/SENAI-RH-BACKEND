@@ -23,7 +23,6 @@ namespace senai_gp3_webApi.Repositories
         public void CadastrarUniSenai(Unidadesenai unidadesenai)
         {
             ctx.Unidadesenais.Add(unidadesenai);
-            
             ctx.SaveChanges();
         }
 

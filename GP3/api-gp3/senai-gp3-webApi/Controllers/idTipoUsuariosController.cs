@@ -32,30 +32,5 @@ namespace senai_gp3_webApi.Controllers
                 return BadRequest(execp);
             };
         }
-
-        // GET api/<idTipoUsuariosController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<idTipoUsuariosController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<idTipoUsuariosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<idTipoUsuariosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

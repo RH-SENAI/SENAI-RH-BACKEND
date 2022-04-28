@@ -25,7 +25,6 @@ namespace senai_gp3_webApi.Repositories
         public void CadastrarDecisao(Decisao novaDecisao)
         {
             ctx.Decisaos.Add(novaDecisao);
-
             ctx.SaveChanges();
         }
 

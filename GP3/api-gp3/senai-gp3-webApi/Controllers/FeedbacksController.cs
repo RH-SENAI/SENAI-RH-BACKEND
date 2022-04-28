@@ -38,13 +38,6 @@ namespace senai_gp3_webApi.Controllers
             ;
         }
 
-        // GET api/<FeedbacksController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<FeedbacksController>
         [HttpPost("Cadastrar")]
         public IActionResult CadastrarFeedback(Feedback novoFeedback)
@@ -66,18 +59,6 @@ namespace senai_gp3_webApi.Controllers
             {
                 return BadRequest(execp);
             }
-        }
-
-        // PUT api/<FeedbacksController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<FeedbacksController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

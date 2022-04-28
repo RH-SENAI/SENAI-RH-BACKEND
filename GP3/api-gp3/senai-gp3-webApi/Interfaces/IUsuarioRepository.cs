@@ -38,8 +38,8 @@ namespace senai_gp3_webApi
         /// Atualiza um usuario
         /// </summary>
         /// <param name="idUsuario">Id do Usuario</param>
-        /// <param name="novaSenha">Objeto que pertence a um gestor atualizado</param>
-        Usuario AtualizarFuncionario(int idUsuario, string novaSenha);
+        /// <param name="funcionarioAtualizado">Objeto que pertence a um funcionario atualizado</param>
+        Usuario AtualizarFuncionario(int idUsuario, FuncionarioAtualizadoViewModel funcionarioAtualizado);
 
         /// <summary>
         /// Lista os usuarios

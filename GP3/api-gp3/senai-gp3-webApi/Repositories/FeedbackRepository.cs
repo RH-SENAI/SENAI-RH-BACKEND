@@ -30,7 +30,6 @@ namespace senai_gp3_webApi.Repositories
         public void CadastrarFb(Feedback novoFeedback)
         {
             ctx.Feedbacks.Add(novoFeedback);
-
             ctx.SaveChanges();
         }
 
