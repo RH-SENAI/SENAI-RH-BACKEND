@@ -8,8 +8,10 @@ namespace SenaiRH_G1.Interfaces
 {
     public interface IUsuarioRepository
     {
-        Usuario Login(string email, string senha);
-        List<Usuario> ListarTodos();
-        Usuario BuscarPorId(int id);
+        Usuario Login(string cpf, string senha);
+        Usuario BuscarUsuario(int id);
+        List<Usuario> ListarFuncionarios();
+        void AlterarSenha(int idUsuario, string senhaNova, string senhaAtual, string senhaConfirmacao);
+        bool VerificaSenha(string senha, int idUsuario);
     }
 }

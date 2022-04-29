@@ -59,6 +59,7 @@ namespace SenaiRH_G1.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
                     new Claim(JwtRegisteredClaimNames.Name, usuarioBuscado.Nome),
                     new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario.ToString()),
+                    new Claim("isActive", usuarioBuscado.UsuarioAtivo.ToString()),
                     new Claim("role", usuarioBuscado.IdTipoUsuario.ToString())
                 };
 
