@@ -184,5 +184,38 @@ namespace SenaiRH_G1.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpPost("RecuperarSenhaEnviar")]
+        public IActionResult EnviaEmail(string email)
+        {
+            try
+            {
+                _usuarioRepository.EnviaEmailRecSenha(email);
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpPost("RecuperarSenhaVerifica/{codigo}")]
+        public IActionResult VerificaSenhaRec(int codigo)
+        {
+            try
+            {
+                if (_usuarioRepository.VerificaRecSenha(codigo))
+                {
+                    return Ok();
+                }
+                return BadRequest();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

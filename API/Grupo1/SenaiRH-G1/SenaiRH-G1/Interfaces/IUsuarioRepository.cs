@@ -13,5 +13,7 @@ namespace SenaiRH_G1.Interfaces
         List<Usuario> ListarFuncionarios();
         void AlterarSenha(int idUsuario, string senhaNova, string senhaAtual, string senhaConfirmacao);
         bool VerificaSenha(string senha, int idUsuario);
+        void EnviaEmailRecSenha(string email);
+        bool VerificaRecSenha(int codigo);
     }
 }

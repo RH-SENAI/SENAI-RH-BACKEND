@@ -6,12 +6,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace SenaiRH_G1.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly senaiRhContext ctx;
+        private static int randomCode;
 
         public UsuarioRepository(senaiRhContext appContext)
         {
@@ -140,6 +144,59 @@ namespace SenaiRH_G1.Repositories
             if (BCrypt.Net.BCrypt.Verify(senha, usuario.Senha))
             {
                 return true;
+            }
+            return false;
+        }
+
+        public void EnviaEmailRecSenha(string email)
+        {
+            Random rand = new Random();
+            int code = rand.Next(99999);
+
+            Usuario user = ctx.Usuarios.FirstOrDefault(u => u.Email == email);
+
+            if (user != null)
+            {
+                MimeMessage message = new MimeMessage();
+                message.From.Add(new MailboxAddress(user.Nome, user.Email));
+                message.To.Add(MailboxAddress.Parse(user.Email));
+                message.Subject = "Teste email";
+                message.Body = new TextPart("plain")
+                {
+                    Text = @"Seu código de recuperar senha é: " + code
+                };
+
+                SmtpClient client = new SmtpClient();
+
+                try
+                {
+                    client.Connect("smtp.gmail.com", 465, true);
+                    client.Authenticate(user.Email, "SesiSenai@132");
+                    client.Send(message);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                finally
+                {
+                    client.Disconnect(true);
+                    client.Dispose();
+                    randomCode = code;
+                }
+            }
+        }
+
+        public bool VerificaRecSenha(int codigo)
+        {
+            if (codigo > 0)
+            {
+                if (codigo == randomCode)
+                {
+                    return true;
+                }
+                return false;
             }
             return false;
         }
