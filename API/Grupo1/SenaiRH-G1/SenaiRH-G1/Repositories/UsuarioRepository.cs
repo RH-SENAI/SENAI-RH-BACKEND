@@ -83,6 +83,7 @@ namespace SenaiRH_G1.Repositories
                     //Caso seja correta
                     if (senha == usuario.Senha)
                     {
+                        
                         //Gera uma Hash com a senha do usuario
                         string senhaHash = Criptografia.GerarHash(usuario.Senha);
                         //Altera a senha no banco de dados
@@ -109,6 +110,38 @@ namespace SenaiRH_G1.Repositories
             }
             //Caso não seja válido, retorna nulo
             return null;
+        }
+
+        public void AlterarSenha(int idUsuario, string senhaNova, string senhaAtual, string senhaConfirmacao)
+        {
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+            if (usuario != null)
+            {
+                if (BCrypt.Net.BCrypt.Verify(senhaAtual, usuario.Senha))
+                {
+                    if (senhaNova == senhaConfirmacao)
+                    {
+                        string novaSenhaHash = BCrypt.Net.BCrypt.HashPassword(senhaNova);
+                        usuario.Senha = novaSenhaHash;
+                        usuario.UsuarioAtivo = true;
+                        ctx.Usuarios.Update(usuario);
+                        ctx.SaveChanges();
+                    }
+                    
+                }
+                
+            }
+        }
+
+        public bool VerificaSenha(string senha, int idUsuario)
+        {
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
+
+            if (BCrypt.Net.BCrypt.Verify(senha, usuario.Senha))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

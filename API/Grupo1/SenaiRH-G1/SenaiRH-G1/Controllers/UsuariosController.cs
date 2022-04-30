@@ -1,4 +1,4 @@
-Ôªøusing Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SenaiRH_G1.Domains;
@@ -23,10 +23,10 @@ namespace SenaiRH_G1.Controllers
         }
 
         /// <summary>
-        /// Endpoint para buscar um usu√°rio pelo ID
+        /// Endpoint para buscar um usu·rio pelo ID
         /// </summary>
-        /// <param name="id">ID do usu√°rio que ser√° buscado</param>
-        /// <returns>Retorna usu√°rio buscado</returns>
+        /// <param name="id">ID do usu·rio que ser· buscado</param>
+        /// <returns>Retorna usu·rio buscado</returns>
         [HttpGet("BuscarUsuario/{id}")]
         public IActionResult BuscarUsuario(int id)
         {
@@ -35,21 +35,21 @@ namespace SenaiRH_G1.Controllers
                 //Caso o ID seja maior que 0
                 if (id > 0)
                 {
-                    //Busca o usu√°rio pelo ID
+                    //Busca o usu·rio pelo ID
                     Usuario usuario = _usuarioRepository.BuscarUsuario(id);
-                    //Caso n√£o haja um usu√°rio com o mesmo ID
+                    //Caso n„o haja um usu·rio com o mesmo ID
                     if(usuario == null) 
                         //Retorna NotFound
                         return NotFound(new
                         {
-                            Mensagem = "O ID n√£o corresponde a nenhum funcion√°rio"
+                            Mensagem = "O ID n„o corresponde a nenhum funcion·rio"
                         });
-                    //Caso haja, retorna o usu√°rio
+                    //Caso haja, retorna o usu·rio
                     return Ok(usuario);
                 }
                 return BadRequest(new
                 {
-                    Mensagem = "Id informado √© inv√°lido"
+                    Mensagem = "Id informado È inv·lido"
                 });
             }
             catch (Exception ex)
@@ -61,35 +61,35 @@ namespace SenaiRH_G1.Controllers
         }
 
         /// <summary>
-        /// Endpoint para buscar o usu√°rio logado
+        /// Endpoint para buscar o usu·rio logado
         /// </summary>
-        /// <returns>O usu√°rio que est√° logado</returns>
+        /// <returns>O usu·rio que est· logado</returns>
         [Authorize]
         [HttpGet("BuscarUsuario")]
         public IActionResult BuscarUsuarioLogado()
         {
             try
             {
-                //Recebe o ID do usu√°rio logado
+                //Recebe o ID do usu·rio logado
                 int id = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == JwtRegisteredClaimNames.Jti).Value);
                 //Caso o ID seja maior que 0
                 if (id > 0)
                 {
-                    //Busca o usu√°rio pelo ID
+                    //Busca o usu·rio pelo ID
                     Usuario usuario = _usuarioRepository.BuscarUsuario(id);
-                    //Caso n√£o haja um usu√°rio com o mesmo ID
+                    //Caso n„o haja um usu·rio com o mesmo ID
                     if (usuario == null)
                         //Retorna NotFound
                         return NotFound(new
                         {
-                            Mensagem = "O ID n√£o corresponde a nenhum funcion√°rio"
+                            Mensagem = "O ID n„o corresponde a nenhum funcion·rio"
                         });
-                    //Caso haja, retorna o usu√°rio
+                    //Caso haja, retorna o usu·rio
                     return Ok(usuario);
                 }
                 return BadRequest(new
                 {
-                    Mensagem = "Id informado √© inv√°lido"
+                    Mensagem = "Id informado È inv·lido"
                 });
             }
             catch (Exception ex)
@@ -101,21 +101,21 @@ namespace SenaiRH_G1.Controllers
         }
 
         /// <summary>
-        /// Endpoint que lista todos os funcion√°rios 
+        /// Endpoint que lista todos os funcion·rios 
         /// </summary>
-        /// <returns>Lista de Uus√°rios</returns>
+        /// <returns>Lista de Uus·rios</returns>
         [HttpGet("Funcionarios")]
         public IActionResult ListarFuncionarios()
         {
             try
             {
-                //Inst√¢ncia uma lista de usu√°rios e preenche com funcionarios
+                //Inst‚ncia uma lista de usu·rios e preenche com funcionarios
                 List<Usuario> lista = _usuarioRepository.ListarFuncionarios();
 
                 if (lista == null)
                     return NotFound(new
                     {
-                        Mensagem = "N√£o h√° funcion√°ros no sistema"
+                        Mensagem = "N„o h· funcion·ros no sistema"
                     });
                 return Ok(lista);
             }
@@ -125,6 +125,64 @@ namespace SenaiRH_G1.Controllers
                 throw;
             }
             
+        }
+
+        
+        [HttpPost("VerificaSenha/{idUsuario}")]
+        public IActionResult VerificaSenha(int idUsuario)
+        {
+            try
+            {
+                string senhaAtual = Request.Headers["senhaUser"].ToString();
+                bool resposta = _usuarioRepository.VerificaSenha(senhaAtual, idUsuario);
+                if (resposta == true)
+                {
+                    return Ok(new
+                    {
+                        Mensagem = resposta
+                    });
+                }
+                return BadRequest(new
+                {
+                    Mensagem = resposta
+                });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost("AlteraSenha/{idUsuario}")]
+        public IActionResult AlterarSenha(int idUsuario)
+        {
+            try
+            {
+                string senhaAtual = Request.Headers["senhaUser"].ToString();
+                string senhaNova = Request.Headers["senhaNova"].ToString();
+                string senhaConfirmacao = Request.Headers["senhaConfirmacao"].ToString();
+
+                if (idUsuario > 0 && senhaNova != null && senhaAtual != null && senhaConfirmacao != null)
+                {
+                    _usuarioRepository.AlterarSenha(idUsuario, senhaNova, senhaAtual, senhaConfirmacao);
+
+                    return Ok(new
+                    {
+                        Mensagem = "A senha foi alterada"
+                    });
+                }
+                return BadRequest(new
+                {
+                    Mensagem = "Os dados inseridos s„o inv·lidos!"
+                });
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+                return BadRequest(ex);
+            }
         }
     }
 }

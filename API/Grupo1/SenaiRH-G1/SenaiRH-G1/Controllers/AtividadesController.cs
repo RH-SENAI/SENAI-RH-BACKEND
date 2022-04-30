@@ -28,22 +28,14 @@ namespace SenaiRH_G1.Controllers
             _atividadeRepository = repo;
         }
 
-        /// <summary>
-        /// Endpoint que lista todas as atividades
-        /// </summary>
-        /// <returns>Lista de atividades</returns>
-        [Authorize(Roles = "2")]
+
+        //[Authorize(Roles = "2")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Atividade>>> GetAtividades()
         {
             return await _context.Atividades.ToListAsync();
         }
 
-        /// <summary>
-        /// Endpoint para cadastrar uma atividade
-        /// </summary>
-        /// <param name="atividade">Objeto que será cadastrao</param>
-        /// <returns>Atividade que foi cadastrada</returns>
         [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult PostAtividade(Atividade atividade)
@@ -76,11 +68,6 @@ namespace SenaiRH_G1.Controllers
 
         }
 
-        /// <summary>
-        /// Endpoint para deletar uma atividade do sistema
-        /// </summary>
-        /// <param name="id">ID da atividade que será deletada</param>
-        /// <returns>NoContent</returns>
         [Authorize(Roles = "2")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEquipamento(int id)
@@ -325,22 +312,18 @@ namespace SenaiRH_G1.Controllers
             }
 
         }
-        /// <summary>
-        /// Endpoint para listar todas as atividades que necessitam de validação 
-        /// </summary>
-        /// <returns>Lista de atividades</returns>
-        [HttpGet("ListaValidar")]
-        public IActionResult ListaValidar()
-        {
-            try
+            [HttpGet("ListaValidar")]
+            public IActionResult ListaValidar()
             {
-                return Ok(_atividadeRepository.ListaValidar());
-            }
-            catch (Exception ex)
-            {
+                try
+                {
+                    return Ok(_atividadeRepository.ListaValidar());
+                }
+                catch (Exception ex)
+                {
 
-                return BadRequest(ex);
+                    return BadRequest(ex);
+                }
             }
-        }
     }
 }
