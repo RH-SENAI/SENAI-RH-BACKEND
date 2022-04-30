@@ -154,7 +154,7 @@ namespace SenaiRH_G1.Controllers
             }
         }
 
-        [HttpPost("AlteraSenha/{idUsuario}")]
+        [HttpPatch("AlteraSenha/{idUsuario}")]
         public IActionResult AlterarSenha(int idUsuario)
         {
             try
@@ -185,20 +185,24 @@ namespace SenaiRH_G1.Controllers
             }
         }
 
-        [HttpPost("RecuperarSenhaEnviar")]
+        [HttpPost("RecuperarSenhaEnviar/{email}")]
         public IActionResult EnviaEmail(string email)
         {
             try
             {
                 _usuarioRepository.EnviaEmailRecSenha(email);
-                return Ok();
+                return Ok(new
+                {
+                    Mensagem = "Código enviado"
+                });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                return BadRequest(ex);
                 throw;
             }
         }
+
         [HttpPost("RecuperarSenhaVerifica/{codigo}")]
         public IActionResult VerificaSenhaRec(int codigo)
         {
@@ -215,6 +219,35 @@ namespace SenaiRH_G1.Controllers
             {
 
                 throw;
+            }
+        }
+        [HttpPatch("AlteraSenhaRec/{email}")]
+        public IActionResult AlterarSenhaRec(string email)
+        {
+            try
+            {
+                string senhaNova = Request.Headers["senhaNova"].ToString();
+                string senhaConfirmacao = Request.Headers["senhaConfirmacao"].ToString();
+
+                if (email != null && senhaNova != null && senhaConfirmacao != null)
+                {
+                    _usuarioRepository.AlterarSenhaRec(email, senhaNova, senhaConfirmacao);
+
+                    return Ok(new
+                    {
+                        Mensagem = "A senha foi alterada"
+                    });
+                }
+                return BadRequest(new
+                {
+                    Mensagem = "Os dados inseridos são inválidos!"
+                });
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+                return BadRequest(ex);
             }
         }
     }

@@ -137,6 +137,23 @@ namespace SenaiRH_G1.Repositories
             }
         }
 
+        public void AlterarSenhaRec(string email, string senhaNova, string senhaConfirmacao)
+        {
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Email == email);
+            if (usuario != null)
+            {
+                
+                    if (senhaNova == senhaConfirmacao)
+                    {
+                        string novaSenhaHash = BCrypt.Net.BCrypt.HashPassword(senhaNova);
+                        usuario.Senha = novaSenhaHash;
+                        usuario.UsuarioAtivo = true;
+                        ctx.Usuarios.Update(usuario);
+                        ctx.SaveChanges();
+                    }
+            }
+        }
+
         public bool VerificaSenha(string senha, int idUsuario)
         {
             var usuario = ctx.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
