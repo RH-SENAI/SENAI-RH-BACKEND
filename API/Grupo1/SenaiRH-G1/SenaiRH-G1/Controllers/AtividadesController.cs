@@ -36,6 +36,17 @@ namespace SenaiRH_G1.Controllers
             return await _context.Atividades.ToListAsync();
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<Atividade>>> BuscarPorId(int id)
+        {
+            Atividade atividade = _context.Atividades.FirstOrDefault(u => u.IdAtividade == id);
+            return StatusCode(200, new
+            {
+                atividade
+            });
+
+        }
+
         [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult PostAtividade(Atividade atividade)
