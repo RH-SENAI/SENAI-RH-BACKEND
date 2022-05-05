@@ -31,9 +31,20 @@ namespace SenaiRH_G1.Controllers
 
         //[Authorize(Roles = "2")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Atividade>>> GetAtividades()
+        public IActionResult GetAtividades()
         {
-            return await _context.Atividades.ToListAsync();
+            try
+            {
+                List<Atividade> listaAtividade = _atividadeRepository.ListarTodas();
+
+                return Ok(listaAtividade);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet("{id}")]

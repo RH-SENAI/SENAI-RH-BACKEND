@@ -103,7 +103,24 @@ namespace SenaiRH_G1.Repositories
 
         public List<Atividade> ListarTodas()
         {
-            return ctx.Atividades.ToList();
+            return ctx.Atividades
+                .Select(a => new Atividade()
+                {
+                    IdAtividade = a.IdAtividade,
+                    NomeAtividade = a.NomeAtividade,
+                    DataInicio = a.DataInicio,
+                    DataConclusao = a.DataConclusao,
+                    RecompensaMoeda = a.RecompensaMoeda,
+                    RecompensaTrofeu = a.RecompensaTrofeu,
+                    DescricaoAtividade = a.DescricaoAtividade,
+                    NecessarioValidar = a.NecessarioValidar,
+                    DataCriacao = a.DataCriacao,
+                    IdGestorCadastroNavigation = new Usuario()
+                    {
+                        Nome = a.IdGestorCadastroNavigation.Nome
+                    }
+                })
+                .ToList();
         }
 
         public List<MinhasAtividadesViewModel> ListaValidar()
